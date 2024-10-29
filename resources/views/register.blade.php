@@ -46,6 +46,7 @@
                 <div class="col-md-8 col-lg-6 mx-auto">
                     <div class="card shadow-sm">
                         <div class="card-body">
+
                             <div class="text-center mb-5">
                                 <img src="{{ asset('assets/logo.png') }}" alt="Keiffa Decoration Logo"
                                     class="img-fluid mb-4" style="max-width: 150px;">
@@ -73,60 +74,61 @@
                                 @csrf
                                 <div class="mb-3">
                                     <input type="text" name="name" class="form-control" placeholder="Nama"
-                                        required value="{{ old('name') }}"
-                                        @error('name')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror>
+                                        required value="{{ old('name') }}">
+                                    @error('name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="mb-3">
                                     <input type="text" name="no_hp" class="form-control" placeholder="No. Telepon"
-                                        required value="{{ old('no_hp') }}"
-                                        @error('no_hp')
-                                            <div class="alert alert-danger">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                        </div>
-                                    <div class="mb-3">
-                                        <input type="email" name="email" class="form-control" placeholder="Email"
-                                            required value="{{ old('email') }}"
-                                            @error('email')
-                                                <div class="alert alert-danger">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    <div class="mb-3">
-                                        <input type="password" name="password" class="form-control"
-                                            placeholder="Password" required"
-                                            @error('password')
-                                                <div class="alert alert-danger">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    <div class="mb-3">
-                                        <input type="password" name="password_confirmation" class="form-control"
-                                            placeholder="Konfirmasi Password" required
-                                            @error('password_confirmation')
-                                                <div class="alert alert-danger">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                    <div class="d-grid gap-2 mt-3">
-                                        <button type="submit" class="btn btn-primary"
-                                            style="background-color: #7e4752; border-color: #7e4752;">Register</button>
-                                        <a href="{{ route('login') }}" class="btn btn-secondary">Login</a>
-                                    </div>
+                                        required value="{{ old('no_hp') }}">
+                                    @error('no_hp')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <select name="jenis_kelamin" class="form-control">
+                                        <option value="Laki-laki" {{ old('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                        <option value="Perempuan" {{ old('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                    </select>
+                                    @error('jenis_kelamin')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <input type="email" name="email" class="form-control" placeholder="Email"
+                                        required value="{{ old('email') }}">
+                                    @error('email')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <input type="password" name="password" class="form-control" placeholder="Password"
+                                        required>
+                                    @error('password')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <input type="password" name="password_confirmation" class="form-control"
+                                        placeholder="Konfirmasi Password" required>
+                                    @error('password_confirmation')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="d-grid gap-2 mt-3">
+                                    <button type="submit" class="btn btn-primary"
+                                        style="background-color: #7e4752; border-color: #7e4752;">Register</button>
+                                    <a href="{{ route('login') }}" class="btn btn-secondary">Login</a>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- Scripts -->

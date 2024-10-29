@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Tilia -  Elegant Photography Portfolio HTML Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  
+    <!-- Custom styles for this template -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body role="document">
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Tilia</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="#homepage">Homepage</a></li>
+				<li><a href="#albums">Portfolio Page</a></li>
+                <li><a href="#gallery">Gallery Page</a></li>
+                <li><a href="#contact">Contact Page</a></li>
+				<li><a href="#faq">FAQ Page</a></li>
+          
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container theme-showcase" role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Tilia Documentation</h1>
+        <p>Thank you for purchasing our template. If you don't find the answers for your questions in this help file, please feel free to email via our <a target="_blank" href="http://themeforest.net/user/matchthemes#contact">user page contact form</a> (this is the only way we can verify legitimate customers) . Thanks so much!</p>
+      </div>
+
+<div class="page-header">
+        <h1>Setup Pages</h1>
+      </div>
+
+<div class="page-header">
+        <h3 id="homepage">Homepage</h3>
+      </div>
+
+<p>In the <strong>tilia-html</strong> folder you have 11 homepage variations( <strong>index.html</strong>, <strong>home-2.html, </strong> <strong>home-3.html</strong> etc. ). To change the main homepage, just rename home-2.html or the other homepages to index.html.</p>
+
+<div class="page-header">
+        <h3 id="homepage-2">Homepage Slider</h3>
+      </div>
+      
+ <p>To add your own images to the home slider, edit <strong>index.html</strong> file line 362. Edit the <strong>slider-img</strong> div class and add the link to your own image.</p>     
+ 
+<pre>
+&lt;div class="swiper-slide slider-img" style="background-image: url('images/home/slider-1.jpg');"&gt;
+</pre>
+
+<p>To change the image slider text, edit <strong>slider-caption</strong> container:</p>
+
+<pre>
+&lt;div class="container slider-caption"&gt;
+&lt;div class="slider-text"&gt;
+&lt;h1 class="display-2"&gt;Wedding Photography&lt;/h1&gt;
+&lt;span class="post-subtitle"&gt; Ancillae torquatos in nec, impetus nostrum ea eos.&lt;/span&gt; &lt;a href="#" class="read-more white-btn"&gt;Find More&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+<p>The homepage is formed by different sections. When you edit the index.html locate a section that is between the following comments:</p>
+
+<pre>
+&lt;!-- SECTION 1 --&gt;
+
+Section code goes here  
+	
+&lt;!-- /SECTION 1 --&gt;  
+</pre>
+
+
+<div class="page-header">
+        <h3 id="albums">Portfolio Page</h3>
+      </div>
+	  
+<p>You can choose from 15+ different portfolio page templates:<strong> portfolio-masonry</strong>, <strong> portfolio-grid-v1</strong>, <strong> portfolio-grid-v2</strong>  ( with 2, 3, 4 or 5 cols variation ) and with their full screen versions.</p>  
+
+<p>For example if you want to add a new featured image for a portfolio item, in the <strong>portfolio-masonry-v1-4-cols </strong>page, add the following code after line 505.</p>
+
+<pre>
+&lt;div class="item-portfolio item-4cols wedding"&gt;
+&lt;div class="post-image item-grid-image"&gt;
+&lt;img loading="lazy" src="images/portfolio/featured-images/gal-3-masonry.jpg" class="img-fluid" alt=" "  width="750" height="500"&gt;
+&lt;a class="cursor-eye" href="gallery-grid-4-cols.html"&gt;
+&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="item-text-holder"&gt;
+&lt;h2 class="article-title display-6"&gt;&lt;a href="gallery-grid-4-cols.html"&gt;Angela &amp;amp; Zach&lt;/a&gt;&lt;/h2&gt;
+&lt;ul class="portfolio-categ"&gt;
+&lt;li&gt;&lt;a href="#"&gt;Wedding&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</pre>	  
+
+
+<div class="page-header">
+        <h3 id="gallery">Gallery Page</h3>
+      </div>
+
+<p>You can choose from 12 different gallery page templates:<strong> gallery-masonry</strong>, <strong>gallery-grid</strong> 2, 3, 4 and 5 cols versions, <strong>gallery-slider</strong>, <strong>gallery-justified</strong> and with their full screen versions.</p>  
+
+<p>For example if you want to add a new image for the <strong>gallery-masonry-4-cols </strong>page, add the following code after line 417.</p>
+
+<pre>
+&lt;div class="item-portfolio item-4cols gallery-post"&gt;
+&lt;a href="images/portfolio/gal-masonry/gal-masonry-09.jpg" class="lightbox" title=""&gt;
+&lt;img class="img-fluid" loading="lazy" src="images/portfolio/gal-masonry/gal-masonry-09.jpg" alt="" title="" width="750" height="500"&gt;
+&lt;/a&gt;
+&lt;/div&gt;
+</pre>
+
+							  
+<div class="page-header">
+        <h3 id="contact">Contact Page</h3>
+      </div>
+
+<p>In order to receive emails via the contact page, you'll have to edit the <strong>include/contact-process.php</strong>  file and change the <strong>$recipient</strong> variable value with your own email address.</p>
+
+<p><img src="images/contact-email.jpg" alt="" /></p>
+
+<div class="page-header">
+        <h3 id="faq">FAQ Page</h3>
+      </div>
+
+<p>To create more faq items, duplicate the li tag and make sure the <b>a href and div id are the same and unique</b>.</p>      
+
+<pre>&lt;li&gt;
+&lt;div class="faq-title"&gt;&lt;a href="#faq1"&gt;
+1. Itaque earum rerum hic tenetur?&lt;/a&gt;
+&lt;/div&gt;
+&lt;div id="faq1" class="faq-section"&gt;
+&lt;p&gt;At vero eos et accusamus. Totam rem aperiam. Corrupti quos dolores et quas molestias excepturi sint occaecati. Laboris nisi ut aliquip ex ea commodo consequat. Laboris nisi ut aliquip ex ea commodo consequat. Corrupti quos dolores et quas molestias excepturi sint occaecati.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+</pre>
+
+
+</div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="css/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>

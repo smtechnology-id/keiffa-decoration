@@ -696,7 +696,7 @@ h6 {
     width: 40px;
     height: 40px;
     font-size: 18px;
-    background: url(../images/logo-udayana.png) no-repeat;
+    background: url(../logo.png) no-repeat;
     background-position: center left;
     background-size: 40px;
     display: block;
@@ -814,7 +814,7 @@ h6 {
 .app-menu > ul > li.active-page > a,
 .app-menu > ul > li.open > a,
 .app-menu > ul > li > a:hover {
-    color: #2269f5;
+    color: #7e4752;
 }
 .app-menu > ul > li > a:hover {
     padding-left: 20px;

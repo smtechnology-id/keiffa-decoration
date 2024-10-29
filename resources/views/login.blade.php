@@ -84,7 +84,7 @@
                             <form action="{{ route('loginPost') }}" method="post">
                                 @csrf
                                 <div class="mb-3">
-                                    <input type="text" name="username" class="form-control" placeholder="Username"
+                                    <input type="email" name="email" class="form-control" placeholder="Email"
                                         required>
                                 </div>
                                 <div class="mb-3">
