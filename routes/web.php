@@ -61,5 +61,12 @@ Route::group(['middleware' => ['authCheck:user']], function () {
     Route::get('/user/portfolio', [UserController::class, 'portfolio'])->name('user.portfolio');
     Route::get('/user/cart', [UserController::class, 'cart'])->name('user.cart');
     Route::get('/user/order', [UserController::class, 'order'])->name('user.order');
+    Route::get('/user/review', [UserController::class, 'review'])->name('user.review');
+
+
+    // Cart
+    Route::get('/user/cart/add/{slug}', [UserController::class, 'cartAdd'])->name('user.cart.add');
+    Route::get('/user/cart/addQuantity/{slug}', [UserController::class, 'cartAddQuantity'])->name('user.cart.addQuantity');
+    Route::get('/user/cart/subQuantity/{slug}', [UserController::class, 'cartSubQuantity'])->name('user.cart.subQuantity');
 });
 

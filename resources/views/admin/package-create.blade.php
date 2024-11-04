@@ -5,10 +5,14 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Create Package / Catalog</h5>
-            <form action="{{ route('admin.package.createPost') }}" method="post">
+            <form action="{{ route('admin.package.createPost') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label for="image">Image</label>
+                            <input type="file" name="image" id="image" class="form-control" required accept="image/*">
+                        </div>
                         <div class="form-group mb-3">
                             <label for="nama">Name</label>
                             <input type="text" name="nama" id="nama" class="form-control" placeholder="Package Name" required>

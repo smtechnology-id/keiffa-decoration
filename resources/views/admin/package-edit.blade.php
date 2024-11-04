@@ -11,6 +11,10 @@
                     <div class="col-md-6">
                         <input type="hidden" name="id" id="id" value="{{ $package->id }}">
                         <div class="form-group mb-3">
+                            <label for="image">Image</label>
+                            <input type="file" name="image" id="image" class="form-control" accept="image/*" value="{{ $package->image }}">
+                        </div>
+                        <div class="form-group mb-3">
                             <label for="nama">Name</label>
                             <input type="text" name="nama" id="nama" class="form-control" placeholder="Package Name" required value="{{ $package->nama }}">
                         </div>

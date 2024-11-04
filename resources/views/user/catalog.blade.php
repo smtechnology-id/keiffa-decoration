@@ -1,44 +1,41 @@
 @extends('layouts.landing')
 
 @section('content')
-    <div class="container">
-        <div class="row" data-aos="fade-up">
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-                <div class="gallery_content">
-                    <figure class="contact-form-img">
-                        <img src="{{ asset('assets-landing/images/gallery-img4.png') }}" alt="" class="img-fluid">
-                    </figure>
-                    <div class="banner-btn discover-btn-banner">
-                        <a href="about.html" class="text-decoration-none">19/03/2022</a>
-                    </div>
-                    <h4>Jose and Clarence</h4>
-                    <p>Scottsdale, Arizona</p>
+<div class="container mt-5 mb-5">
+    <div class="row" data-aos="fade-up">
+        @foreach ($packages as $package)
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <div class="gallery_content">
+                <figure class="contact-form-img">
+                    <img src="{{ asset('storage/packages/' . $package->image) }}" alt="" class="img-fluid" style="border-radius: 50px 0px 50px 0px;" width="100%">
+                </figure>
+                <div class="banner-btn discover-btn-banner">
+                    <a href="" class="text-decoration-none">Rp. {{ number_format($package->harga, 0, ',', '.') }}</a>
                 </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-                <div class="gallery_content gallery_content-mb gallery-bottom">
-                    <figure class="contact-form-img">
-                        <img src="{{ asset('assets-landing/images/gallery-img5.png') }}" alt="" class="img-fluid">
-                    </figure>
-                    <div class="banner-btn discover-btn-banner">
-                        <a href="about.html" class="text-decoration-none">09/02/2022</a>
+                <h5 class="text-center">{{ $package->nama }}</h5>
+                <ul class="list-unstyled">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <li>Properti : {{ $package->properti }}</li>
+                            <li>Jenis Bunga : {{ $package->jenis_bunga }}</li>
+                            <li>Hand Bouquet : {{ $package->hand_bouquet }}</li>
+                        </div>
+                        <div class="col-md-6">
+                            <li>Pilihan Dekorasi
+                                Pelaminan : {{ $package->dekorasi }}</li>
+                            <li>Luas Dekorasi : {{ $package->luas_dekorasi }}</li>
+                            <li>Meja Angpao : {{ $package->meja_angpao }}</li>
+                            <li>Kotak Angpao : {{ $package->kotak_angpao }}</li>
+                        </div>
                     </div>
-                    <h4>Gilbert and William</h4>
-                    <p>Scottsdale, Arizona</p>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-                <div class="gallery_content gallery_content-mb">
-                    <figure class="contact-form-img">
-                        <img src="{{ asset('assets-landing/images/gallery-img6.png') }}" alt="" class="img-fluid">
-                    </figure>
-                    <div class="banner-btn discover-btn-banner">
-                        <a href="about.html" class="text-decoration-none">17/04/2032</a>
-                    </div>
-                    <h4>Alberta and Ryan</h4>
-                    <p>Scottsdale, Arizona</p>
+                </ul>
+                <div class="banner-btn discover-btn-banner text-center">
+                    <a href="{{ route('user.cart.add', ['slug' => $package->packageSlug]) }}" class="btn btn-primary text-decoration-none" style="background-color: #7E4752; color: #fff;"><i class="fa fa-clipboard-list"></i>Add To Cart</a>
                 </div>
             </div>
         </div>
+        @endforeach
+
     </div>
+</div>
 @endsection

@@ -27,34 +27,41 @@ class AdminController extends Controller
 
     public function packageCreatePost(Request $request)
     {
-       $request->validate([
-        'nama' => 'required',
-        'harga' => 'required',
-        'properti' => 'required',
-        'jenis_bunga' => 'required',
-        'hand_bouquet' => 'required',
-        'luas_dekorasi' => 'required',
-        'dekorasi' => 'required',
-        'meja_angpao' => 'required',
-        'kotak_angpao' => 'required',
-        'deskripsi' => 'nullable',
-       ]);
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10048',
+            'nama' => 'required',
+            'harga' => 'required',
+            'properti' => 'required',
+            'jenis_bunga' => 'required',
+            'hand_bouquet' => 'required',
+            'luas_dekorasi' => 'required',
+            'dekorasi' => 'required',
+            'meja_angpao' => 'required',
+            'kotak_angpao' => 'required',
+            'deskripsi' => 'nullable',
+        ]);
 
-       $packageSlug = Str::slug($request->nama);
-       $package = Package::create([
-        'nama' => $request->nama,
-        'packageSlug' => $packageSlug,
-        'harga' => $request->harga,
-        'deskripsi' => $request->deskripsi,
-        'properti' => $request->properti,
-        'jenis_bunga' => $request->jenis_bunga,
-        'hand_bouquet' => $request->hand_bouquet,
-        'luas_dekorasi' => $request->luas_dekorasi,
-        'dekorasi' => $request->dekorasi,
-        'meja_angpao' => $request->meja_angpao,
-        'kotak_angpao' => $request->kotak_angpao,
-       ]);
-       return redirect()->route('admin.package')->with('success', 'Package created successfully');
+        // Simpan gambar
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->storeAs('public/packages', $imageName);
+
+
+        $packageSlug = Str::slug($request->nama);
+        $package = Package::create([
+            'image' => $imageName,
+            'nama' => $request->nama,
+            'packageSlug' => $packageSlug,
+            'harga' => $request->harga,
+            'deskripsi' => $request->deskripsi,
+            'properti' => $request->properti,
+            'jenis_bunga' => $request->jenis_bunga,
+            'hand_bouquet' => $request->hand_bouquet,
+            'luas_dekorasi' => $request->luas_dekorasi,
+            'dekorasi' => $request->dekorasi,
+            'meja_angpao' => $request->meja_angpao,
+            'kotak_angpao' => $request->kotak_angpao,
+        ]);
+        return redirect()->route('admin.package')->with('success', 'Package created successfully');
     }
 
     public function packageEdit($slug)
@@ -66,6 +73,7 @@ class AdminController extends Controller
     public function packageUpdatePost(Request $request)
     {
         $request->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10048',
             'nama' => 'required',
             'harga' => 'required',
             'properti' => 'required',
@@ -79,7 +87,12 @@ class AdminController extends Controller
         ]);
 
         $package = Package::find($request->id);
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->storeAs('public/packages', $imageName);
+        } 
         $package->update([
+            'image' => $imageName,
             'nama' => $request->nama,
             'harga' => $request->harga,
             'deskripsi' => $request->deskripsi,
@@ -125,7 +138,7 @@ class AdminController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10048',
         ]);
 
-        $imageName = time().'.'.$request->image->extension();
+        $imageName = time() . '.' . $request->image->extension();
         $request->image->storeAs('public/additional', $imageName);
 
         $slug = Str::slug($request->nama);
@@ -157,7 +170,7 @@ class AdminController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10048',
         ]);
         if ($request->hasFile('image')) {
-            $imageName = time().'.'.$request->image->extension();
+            $imageName = time() . '.' . $request->image->extension();
             $request->image->storeAs('public/additional', $imageName);
             $fileName = $request->image->hashName();
         } else {
