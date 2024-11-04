@@ -2,6 +2,12 @@
 
 @section('content')
 <div class="container mt-5 mb-5">
+    
+   <div class="box d-flex justify-content-center align-items-center mb-5">
+       <a href="{{ route('user.catalog') }}" class="btn btn-outline-primary mb-3 mr-3" style="background-color: transparent; border-color: #7E4752; color: #7E4752;">Paket Dekorasi Wedding</a>   
+       <a href="{{ route('user.additional') }}" class="btn btn-outline-primary mb-3 ml-3" style="background-color: transparent; border-color: #7E4752; color: #7E4752;">Additional Dekorasi Wedding</a>   
+
+   </div>
     <div class="row" data-aos="fade-up">
         @foreach ($packages as $package)
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">

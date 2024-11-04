@@ -12,7 +12,7 @@
                         <label for="image">Image</label>
                         <img src="{{ asset('storage/additional/' . $additional->image) }}" alt="Image"
                             style="max-width: 100%; margin-top: 10px; height: 200px; object-fit: cover;">
-                        <input type="file" name="image" id="image" class="form-control" required accept="image/*"
+                        <input type="file" name="image" id="image" class="form-control" accept="image/*"
                             onchange="previewImage(event)">
                         <input type="hidden" name="oldImage" value="{{ $additional->image }}">
                         <img id="imagePreview" src="#" alt="Image Preview"
@@ -38,7 +38,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="deskripsi">Deskripsi</label>
-                            <textarea name="deskripsi" id="deskripsi" class="form-control" placeholder="Deskripsi" required>{{ $additional->deskripsi }}</textarea>
+                            <textarea name="deskripsi" id="deskripsi" class="form-control" placeholder="Deskripsi">{{ $additional->deskripsi }}</textarea>
                         </div>
                         <div class="form-group mb-3">
                             <button type="submit" class="btn btn-primary" style="background-color: #7E4752; border-color: #fff;">Update</button>

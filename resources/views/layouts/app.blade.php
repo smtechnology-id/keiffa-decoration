@@ -11,7 +11,7 @@
     <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Neptune - Responsive Admin Dashboard Template</title>
+    <title>Admin - Keiffa Decoration</title>
 
     <!-- Styles -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -72,7 +72,7 @@
                                     class="material-icons-two-tone">loyalty</i>Order</a>
                         </li>
                         <li class="@yield('active-portfolio')">
-                            <a href="" class="active"><i
+                            <a href="{{ route('admin.portfolio') }}" class="active"><i
                                     class="material-icons-two-tone">inventory</i>Portofolio</a>
                         </li>
                         <li class="@yield('active-package')">

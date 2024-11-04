@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Package;
 use App\Models\Additional;
-use Illuminate\Support\Str;
+use App\Models\Orders;
+use App\Models\Package;
+use App\Models\Payment;
+use App\Models\Payments;
+use App\Models\Portfolio;
+use App\Models\ProductOrder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -46,7 +51,7 @@ class AdminController extends Controller
         $request->image->storeAs('public/packages', $imageName);
 
 
-        $packageSlug = Str::slug($request->nama);
+        $packageSlug = 'package-' . Str::slug($request->nama);
         $package = Package::create([
             'image' => $imageName,
             'nama' => $request->nama,
@@ -91,12 +96,14 @@ class AdminController extends Controller
             $imageName = time() . '.' . $request->image->extension();
             $request->image->storeAs('public/packages', $imageName);
         } 
+        $packageSlug = 'package-' . Str::slug($request->nama);
         $package->update([
-            'image' => $imageName,
+            'image' => $request->hasFile('image') ? $imageName : $package->image,
             'nama' => $request->nama,
             'harga' => $request->harga,
             'deskripsi' => $request->deskripsi,
             'properti' => $request->properti,
+            'packageSlug' => $packageSlug,
             'jenis_bunga' => $request->jenis_bunga,
             'hand_bouquet' => $request->hand_bouquet,
             'luas_dekorasi' => $request->luas_dekorasi,
@@ -141,7 +148,7 @@ class AdminController extends Controller
         $imageName = time() . '.' . $request->image->extension();
         $request->image->storeAs('public/additional', $imageName);
 
-        $slug = Str::slug($request->nama);
+        $slug = 'additional-' . Str::slug($request->nama);
 
         $additional = Additional::create([
             'image' => $imageName,
@@ -177,12 +184,14 @@ class AdminController extends Controller
             $fileName = $request->oldImage;
         }
         $additional = Additional::find($request->id);
+        $slug = 'additional-' . Str::slug($request->nama);
         $additional->update([
             'nama' => $request->nama,
             'additional_number' => $request->additional_number,
             'harga' => $request->harga,
             'deskripsi' => $request->deskripsi,
-            'image' => $imageName,
+            'image' => $request->hasFile('image') ? $imageName : $additional->image,
+            'slug' => $slug,
         ]);
         return redirect()->route('admin.additional')->with('success', 'Additional updated successfully');
     }
@@ -205,6 +214,110 @@ class AdminController extends Controller
     // Order
     public function order()
     {
-        return view('admin.order');
+        $orders = Orders::all();
+        return view('admin.order', compact('orders'));
+    }
+
+    public function orderDetail($code_order)
+    {
+        $order = Orders::where('code_order', $code_order)->first();
+        $package = ProductOrder::where('order_id', $order->id)->where('jenis', 'package')->get();
+        $additional = ProductOrder::where('order_id', $order->id)->where('jenis', 'additional')->get();
+        $downPayment = Payments::where('order_id', $order->id)->where('jenis', 'down-payment')->first();
+        $fullPayment = Payments::where('order_id', $order->id)->where('jenis', 'remaining-payment')->first();
+        return view('admin.order-detail', compact('order', 'package', 'additional', 'downPayment', 'fullPayment'));
+    }
+
+    public function confirmPayment($id, $status)
+    {
+        $payment = Payments::find($id);
+        $payment->update(['status' => $status]);
+        return redirect()->back()->with('success', 'Payment status updated successfully');
+    }
+
+
+    // Portfolio
+    public function portfolio()
+    {
+        $portfolios = Portfolio::all();
+        return view('admin.portfolio', compact('portfolios'));
+    }
+
+    public function portfolioCreate()
+    {
+        return view('admin.portfolio-create');
+    }
+
+    public function portfolioCreatePost(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10048',
+            'package_name' => 'required',
+            'venue_name' => 'required',
+            'bride_name' => 'required',
+            'groom_name' => 'required',
+            'total_price' => 'required',
+            'code_order' => 'required',
+            'location' => 'required',
+        ]);
+
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->storeAs('public/portfolios', $imageName);
+
+        $portfolio = Portfolio::create([
+            'image' => $imageName,
+            'package_name' => $request->package_name,
+            'venue_name' => $request->venue_name,
+            'bride_name' => $request->bride_name,
+            'groom_name' => $request->groom_name,
+            'total_price' => $request->total_price,
+            'code_order' => $request->code_order,
+            'location' => $request->location,
+        ]);
+        return redirect()->route('admin.portfolio')->with('success', 'Portfolio created successfully');
+    }
+
+    public function portfolioEdit($id)
+    {
+        $portfolio = Portfolio::find($id);
+        return view('admin.portfolio-edit', compact('portfolio'));
+    }
+
+    public function portfolioUpdatePost(Request $request)
+    {
+        $request->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10048',
+            'package_name' => 'required',
+            'venue_name' => 'required',
+            'bride_name' => 'required',
+            'groom_name' => 'required',
+            'total_price' => 'required',
+            'code_order' => 'required',
+            'location' => 'required',
+        ]);
+
+        $portfolio = Portfolio::find($request->id);
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->storeAs('public/portfolios', $imageName);
+        }
+        $portfolio->update([
+            'image' => $request->hasFile('image') ? $imageName : $portfolio->image,
+            'package_name' => $request->package_name,
+            'venue_name' => $request->venue_name,
+            'bride_name' => $request->bride_name,
+            'groom_name' => $request->groom_name,
+            'total_price' => $request->total_price,
+            'code_order' => $request->code_order,
+            'location' => $request->location,
+        ]);
+        return redirect()->route('admin.portfolio')->with('success', 'Portfolio updated successfully');
+    }
+
+    public function portfolioDelete($id)
+    {
+        $portfolio = Portfolio::find($id);
+        $portfolio->delete();
+        return redirect()->route('admin.portfolio')->with('success', 'Portfolio deleted successfully');
     }
 }

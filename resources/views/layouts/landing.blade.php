@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Bridely</title>
+    <title>Home | Keiffa Decoration</title>
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets-landing/images/favicons/apple-icon-57x57.png') }}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets-landing/images/favicons/apple-icon-60x60.png') }}">
     <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets-landing/images/favicons/apple-icon-72x72.png') }}">
@@ -81,9 +81,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-decoration-none navbar-text-color" href="{{ route('user.catalog') }}">Paket Dekorasi Wedding</a>
                                 </li>
+                                
                                 <li class="nav-item">
                                     <a class="nav-link text-decoration-none navbar-text-color" href="{{ route('user.portfolio') }}">Portofolio</a>
                                 </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link text-decoration-none navbar-text-color" href="{{ route('user.order') }}">Order</a>
                                 </li>
@@ -93,8 +95,8 @@
                             </ul>
                             <div class="btn-talk ml-auto">
                                 <ul class="m-0 p-0">
-                                    <li class="list-unstyled d-lg-inline-block"><a class="nav-link contact" href="contact.html">Cart</a></li>
-                                    <li class="icon-search"><a href="" class="text-decoration-none play-button"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                                    <li class="list-unstyled d-lg-inline-block"><a class="nav-link contact" href="{{ route('user.cart') }}">Cart</a></li>
+                                    <li class="icon-search"><a href="{{ route('logout') }}" class="text-decoration-none play-button"><i class="fa-solid fa-sign-out"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -268,7 +270,7 @@
 
                     </div>
                     <div class="col-lg-7 col-md-6 col-sm-12">
-                        <p class="footer-end-text">Copyright ©2022 Bridely.com All Rights Reserved</p>
+                        <p class="footer-end-text">Copyright ©2024 Keiffa Decoration All Rights Reserved</p>
                     </div>
                 </div>
             </div>
