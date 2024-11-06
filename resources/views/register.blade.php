@@ -119,8 +119,8 @@
 
                                 <div class="d-grid gap-2 mt-3">
                                     <button type="submit" class="btn btn-primary"
-                                        style="background-color: #7e4752; border-color: #7e4752;">Register</button>
-                                    <a href="{{ route('login') }}" class="btn btn-secondary">Login</a>
+                                        style="background-color: #7e4752; border-color: #7e4752;">Daftar</button>
+                                    <a href="{{ route('login') }}" class="btn btn-secondary">Masuk</a>
                                 </div>
                             </form>
                         </div>

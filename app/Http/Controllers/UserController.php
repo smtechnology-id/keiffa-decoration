@@ -9,13 +9,15 @@ use App\Models\Package;
 use App\Models\Payments;
 use App\Models\Portfolio;
 use App\Models\ProductOrder;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function index()
     {
-        return view('user.index');
+        $packages = Package::all();
+        return view('user.index', compact('packages'));
     }
 
     public function catalog()
@@ -78,7 +80,7 @@ class UserController extends Controller
         if ($package) {
             $cart = Cart::where('package_id', $package->id)->where('user_id', auth()->user()->id)->first();
             // maksimal 1
-            if($cart->quantity >= 1){
+            if ($cart->quantity >= 1) {
                 return redirect()->route('user.cart')->with('error', 'Maksimal Quantity 1');
             }
         } else {
@@ -145,10 +147,10 @@ class UserController extends Controller
         if ($cart_additional->isEmpty() && $cart_package->isEmpty()) {
             return redirect()->route('user.cart')->with('error', 'Cart is empty');
         }
-        if($cart_package->isEmpty()){
+        if ($cart_package->isEmpty()) {
             return redirect()->route('user.cart')->with('error', 'Minimal memesan 1 Paket Dekorasi Wedding');
         }
-        
+
 
         $code_order = 'INV-' . date('Ymd') . '-' . rand(10000, 99999);
         $order = Orders::create([
@@ -163,21 +165,21 @@ class UserController extends Controller
             'status' => 'pending',
         ]);
 
-        if($cart_package){
-            foreach($cart_package as $package){
-               ProductOrder::create([
-                'order_id' => $order->id,
-                'code_order' => $code_order,
-                'user_id' => auth()->user()->id,
-                'package_id' => $package->package_id,
-                'quantity' => $package->quantity,
-                'total_price' => $package->total_price,
-                'jenis' => 'package',
-               ]);
+        if ($cart_package) {
+            foreach ($cart_package as $package) {
+                ProductOrder::create([
+                    'order_id' => $order->id,
+                    'code_order' => $code_order,
+                    'user_id' => auth()->user()->id,
+                    'package_id' => $package->package_id,
+                    'quantity' => $package->quantity,
+                    'total_price' => $package->total_price,
+                    'jenis' => 'package',
+                ]);
             }
         }
-        if($cart_additional){
-            foreach($cart_additional as $additional){
+        if ($cart_additional) {
+            foreach ($cart_additional as $additional) {
                 ProductOrder::create([
                     'order_id' => $order->id,
                     'code_order' => $code_order,
@@ -214,7 +216,7 @@ class UserController extends Controller
             'order_id' => 'required',
             'code_order' => 'required',
         ]);
-        if($request->hasFile('down_payment')){
+        if ($request->hasFile('down_payment')) {
             // Store the uploaded file in the 'payment_proof' directory
             $paymentProofPath = $request->file('down_payment')->store('payment_proof', 'public');
             $namePaymentProof = $request->file('down_payment')->hashName();
@@ -236,7 +238,7 @@ class UserController extends Controller
             'order_id' => 'required',
             'code_order' => 'required',
         ]);
-        if($request->hasFile('remaining_payment')){
+        if ($request->hasFile('remaining_payment')) {
             // Store the uploaded file in the 'payment_proof' directory
             $paymentProofPath = $request->file('remaining_payment')->store('payment_proof', 'public');
             $namePaymentProof = $request->file('remaining_payment')->hashName();
@@ -246,6 +248,27 @@ class UserController extends Controller
             'order_id' => $request->order_id,
             'code_order' => $request->code_order,
             'jenis' => 'remaining-payment',
+            'payment_proof' => $namePaymentProof,
+            'status' => 'pending',
+        ]);
+        return redirect()->route('user.payment', $request->code_order)->with('success', 'Payment Success');
+    }
+
+    public function paymentRemainingUpdate(Request $request)
+    {
+        $request->validate([
+            'remaining_payment' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'order_id' => 'required',
+            'code_order' => 'required',
+            'payment_id' => 'required',
+        ]);
+        if ($request->hasFile('remaining_payment')) {
+            // Store the uploaded file in the 'payment_proof' directory
+            $paymentProofPath = $request->file('remaining_payment')->store('payment_proof', 'public');
+            $namePaymentProof = $request->file('remaining_payment')->hashName();
+        }
+        $payment = Payments::find($request->payment_id);
+        $payment->update([
             'payment_proof' => $namePaymentProof,
             'status' => 'pending',
         ]);
@@ -263,5 +286,37 @@ class UserController extends Controller
     {
         $portfolio = Portfolio::find($id);
         return view('user.portfolio-detail', compact('portfolio'));
+    }
+
+    public function addReview(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'review' => 'required',
+            'nama_venue' => 'required',
+        ]);
+        if ($request->hasFile('image')) {
+            // Store the uploaded file in the 'payment_proof' directory
+            $imagePath = $request->file('image')->store('review_image', 'public');
+            $nameImage = $request->file('image')->hashName();
+        }
+        // Remember
+        Review::create([
+            'user_id' => auth()->user()->id,
+            'order_id' => $request->order_id,
+            'image' => $nameImage,
+            'review' => $request->review,
+            'nama_venue' => $request->nama_venue,
+            'status' => 'pending',
+        ]);
+        return redirect()->route('user.order')->with('success', 'Review Success');
+    }
+
+
+    // Review
+    public function review()
+    {
+        $reviews = Review::where('status', 'approved')->get();
+        return view('user.review', compact('reviews'));
     }
 }

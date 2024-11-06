@@ -70,6 +70,8 @@
                                     <span class="badge badge-warning">Menunggu Konfirmasi</span>
                                 @elseif($downPayment->status == 'confirmed')
                                     <span class="badge badge-success">Pembayaran Valid</span>
+                                @elseif($downPayment->status == 'rejected')
+                                    <span class="badge badge-danger">Pembayaran Ditolak</span>
                                 @endif
                             </td>
                             <td>{{ $downPayment->created_at->format('d M Y H:i') }}</td>
@@ -106,11 +108,34 @@
                                     <span class="badge badge-warning">Menunggu Konfirmasi</span>
                                 @elseif($remainingPayment->status == 'confirmed')
                                     <span class="badge badge-success">Pembayaran Valid</span>
+                                @elseif($remainingPayment->status == 'rejected')
+                                    <span class="badge badge-danger">Pembayaran Ditolak </span>
+                                    
                                 @endif
                             </td>
                             <td>{{ $remainingPayment->created_at->format('d M Y H:i') }}</td>
                         </tr>
                     </table>
+                    @if ($remainingPayment->status == 'rejected')
+                    <form action="{{ route('user.payment.remaining.update') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-6 d-flex align-items-center">
+                                <div class="form-group">
+                                    <input type="hidden" name="order_id" value="{{ $order->id }}">
+                                    <input type="hidden" name="code_order" value="{{ $order->code_order }}">
+                                    <input type="hidden" name="payment_id" value="{{ $remainingPayment->id }}">
+                                    <label for="remaining_payment">Upload Ulang Bukti Pembayaran Remaining Payment</label>
+                                    <input type="file" class="form-control" id="remaining_payment" name="remaining_payment" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center">
+                                
+                                <button type="submit" class="btn btn-primary" style="background-color: #7E4752; border: none;">Konfirmasi Remaining Payment</button>
+                            </div>
+                        </div>
+                    </form>
+                    @endif
                 @endif
             </div>
            </div>

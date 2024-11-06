@@ -55,6 +55,7 @@ Route::group(['middleware' => ['authCheck:admin']], function () {
     Route::get('/admin/order', [AdminController::class, 'order'])->name('admin.order');
     Route::get('/admin/order/detail/{code_order}', [AdminController::class, 'orderDetail'])->name('admin.order.detail');
     Route::post('/admin/confirm-payment', [AdminController::class, 'confirmPayment'])->name('admin.confirm-payment');
+    Route::post('/admin/reject-payment', [AdminController::class, 'rejectPayment'])->name('admin.reject-payment');
 
     // Portfolio
     Route::get('/admin/portfolio', [AdminController::class, 'portfolio'])->name('admin.portfolio');
@@ -63,6 +64,10 @@ Route::group(['middleware' => ['authCheck:admin']], function () {
     Route::get('/admin/portfolio/edit/{id}', [AdminController::class, 'portfolioEdit'])->name('admin.portfolio.edit');
     Route::post('/admin/portfolio/update', [AdminController::class, 'portfolioUpdatePost'])->name('admin.portfolio.updatePost');
     Route::get('/admin/portfolio/delete/{id}', [AdminController::class, 'portfolioDelete'])->name('admin.portfolio.delete');
+
+    // Review
+    Route::get('/admin/review/approve/{id}', [AdminController::class, 'reviewApprove'])->name('admin.review.approve');
+    Route::get('/admin/review/reject/{id}', [AdminController::class, 'reviewReject'])->name('admin.review.reject');
 
 
 });
@@ -88,12 +93,16 @@ Route::group(['middleware' => ['authCheck:user']], function () {
     Route::get('/user/payment/{code_order}', [UserController::class, 'payment'])->name('user.payment');
     Route::post('/user/payment/down', [UserController::class, 'paymentDown'])->name('user.payment.down');
     Route::post('/user/payment/remaining', [UserController::class, 'paymentRemaining'])->name('user.payment.remaining');
+    Route::post('/user/payment/remaining/update', [UserController::class, 'paymentRemainingUpdate'])->name('user.payment.remaining.update');
 
     // Order Detail
     Route::get('/user/order/detail/{code_order}', [UserController::class, 'orderDetail'])->name('user.order-detail');
 
     // Portfolio Detail
     Route::get('/user/portfolio/detail/{id}', [UserController::class, 'portfolioDetail'])->name('user.portfolio-detail');
+
+    // Add Review
+    Route::post('/user/add-review', [UserController::class, 'addReview'])->name('user.add-review');
 
 
 });

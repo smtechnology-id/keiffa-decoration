@@ -18,7 +18,7 @@
                             <tr>
                                 <th>Order ID</th>
                                 <th>Status Pembayaran</th>
-                                <th>Customer</th>
+                                <th>Pelanggan</th>
                                 <th>Total Harga</th>
                                 <th>Aksi</th>
                             </tr>

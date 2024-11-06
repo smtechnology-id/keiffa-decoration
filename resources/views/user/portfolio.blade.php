@@ -19,9 +19,7 @@
                     <h5>{{ $portfolio->bride_name }} & {{ $portfolio->groom_name }}</h5>
                     <p>{{ $portfolio->venue_name }}</p>
                 </div>
-                <div class="banner-btn discover-btn-banner text-center">
-                    <a href="{{ route('user.portfolio-detail', ['id' => $portfolio->id]) }}" class="btn btn-primary text-decoration-none" style="background-color: #7E4752; color: #fff;"><i class="fa fa-eye"></i> Detail</a>
-                </div>
+                
             </div>
         </div>
         @endforeach

@@ -9,6 +9,7 @@ use App\Models\Payment;
 use App\Models\Payments;
 use App\Models\Portfolio;
 use App\Models\ProductOrder;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -207,7 +208,8 @@ class AdminController extends Controller
     // Review
     public function review()
     {
-        return view('admin.review');
+        $reviews = Review::all();
+        return view('admin.review', compact('reviews'));
     }
 
 
@@ -243,13 +245,25 @@ class AdminController extends Controller
         if ($request->status == 'confirmed') {
             $order = Orders::find($payment->order_id);
             $order->payment_total = $order->payment_total + $request->nominal;
-            if ($order->payment_total == $order->total_price) {
+            if ($order->payment_total >= $order->total_price) {
                 $order->status_pembayaran = 'full';
             } elseif ($order->payment_total < $order->total_price) {
                 $order->status_pembayaran = 'dp';
             }
             $order->save();
         }
+
+        return redirect()->back()->with('success', 'Payment status updated successfully');
+    }
+
+    public function rejectPayment(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+            'status' => 'required',
+        ]);
+        $payment = Payments::find($request->id);
+        $payment->update(['status' => $request->status]);
         return redirect()->back()->with('success', 'Payment status updated successfully');
     }
 
@@ -337,5 +351,18 @@ class AdminController extends Controller
         $portfolio = Portfolio::find($id);
         $portfolio->delete();
         return redirect()->route('admin.portfolio')->with('success', 'Portfolio deleted successfully');
+    }
+    // approve review
+    public function reviewApprove($id)
+    {
+        $review = Review::find($id);
+        $review->update(['status' => 'approved']);
+        return redirect()->back()->with('success', 'Review approved successfully');
+    }
+    public function reviewReject($id)
+    {
+        $review = Review::find($id);
+        $review->update(['status' => 'rejected']);
+        return redirect()->back()->with('success', 'Review rejected successfully');
     }
 }

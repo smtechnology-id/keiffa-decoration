@@ -50,7 +50,7 @@
                 <a href="{{ route('admin.dashboard') }}" class="logo-icon"><span class="logo-text">Keiffa</span></a>
                 <div class="sidebar-user-switcher user-activity-online">
                     <a href="#">
-                        <img src="{{ asset('assets/images/avatars/avatar.png') }}">
+                        <img src="{{ asset('assets/images/user.png') }}">
                         <span class="activity-indicator"></span>
                         <span class="user-info-text">{{ Auth::user()->name }}<br><span
                                 class="user-state-info">{{ Auth::user()->level }}</span></span>
@@ -69,7 +69,7 @@
                         </li>
                         <li class="@yield('active-order')">
                             <a href="{{ route('admin.order') }}" class="active"><i
-                                    class="material-icons-two-tone">loyalty</i>Order</a>
+                                    class="material-icons-two-tone">loyalty</i>Pesanan</a>
                         </li>
                         <li class="@yield('active-portfolio')">
                             <a href="{{ route('admin.portfolio') }}" class="active"><i
@@ -85,14 +85,12 @@
                         </li>
                         <li class="@yield('active-review')">
                             <a href="{{ route('admin.review') }}" class="active"><i
-                                    class="material-icons-two-tone">reviews</i>Review</a>
+                                    class="material-icons-two-tone">reviews</i>Ulasan</a>
                         </li>
                         <li class="sidebar-title">
                             Account
                         </li>
-                        <li class="@yield('active-user')">
-                            <a href="" class="active"><i class="material-icons-two-tone">person</i>Data User</a>
-                        </li>
+                        
                         <li class="@yield('active-logout')">
                             <a href="{{ route('logout') }}" class="active"><i
                                     class="material-icons-two-tone">logout</i>Logout</a>

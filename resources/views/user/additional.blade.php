@@ -28,7 +28,7 @@
                     </div>
                 </ul>
                 <div class="banner-btn discover-btn-banner text-center">
-                    <a href="{{ route('user.cart.add', ['slug' => $additional->slug]) }}" class="btn btn-primary text-decoration-none" style="background-color: #7E4752; color: #fff;"><i class="fa fa-clipboard-list"></i>Add To Cart</a>
+                    <a href="{{ route('user.cart.add', ['slug' => $additional->slug]) }}" class="btn btn-primary text-decoration-none" style="background-color: #7E4752; color: #fff;"><i class="fa fa-clipboard-list"></i> Tambahkan Ke Keranjang</a>
                 </div>
             </div>
         </div>

@@ -93,10 +93,10 @@
                                 </div>
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-primary"
-                                        style="background-color: #7e4752; border-color: #7e4752;">Login</button>
+                                        style="background-color: #7e4752; border-color: #7e4752;">Masuk</button>
                                 </div>
                                 <div class="d-grid gap-2 mt-3">
-                                    <a href="{{ route('register') }}" class="btn btn-secondary">Register</a>
+                                    <a href="{{ route('register') }}" class="btn btn-secondary">Daftar</a>
                                 </div>
                             </form>
                         </div>

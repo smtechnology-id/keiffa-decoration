@@ -96,7 +96,7 @@
                             <ul class="navbar-nav">
                                 <li class="nav-item active">
                                     <a class="nav-link text-decoration-none navbar-text-color home-margin-top"
-                                        href="{{ route('user.index') }}">Home<span
+                                        href="{{ route('user.index') }}">Beranda<span
                                             class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item">
@@ -111,17 +111,17 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link text-decoration-none navbar-text-color"
-                                        href="{{ route('user.order') }}">Order</a>
+                                        href="{{ route('user.order') }}">Pesanan</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-decoration-none navbar-text-color"
-                                        href="{{ route('user.review') }}">Review</a>
+                                        href="{{ route('user.review') }}">Ulasan</a>
                                 </li>
                             </ul>
                             <div class="btn-talk ml-auto">
                                 <ul class="m-0 p-0">
                                     <li class="list-unstyled d-lg-inline-block"><a class="nav-link contact"
-                                            href="{{ route('user.cart') }}">Cart</a></li>
+                                            href="{{ route('user.cart') }}">Keranjang</a></li>
                                     <li class="icon-search"><a href="{{ route('logout') }}"
                                             class="text-decoration-none play-button"><i
                                                 class="fa-solid fa-sign-out"></i></a></li>
@@ -174,16 +174,14 @@
                     <div class="row">
                         <div class="col-lg-1 col-md-1 col-sm-1 d-lg-block d-none"></div>
                         <div class="col-lg-5 col-md-6 col-sm-12">
-                            <h3 class="planning-h3">Let’s Start Planning!</h3>
+                            <h3 class="planning-h3">Mari Mulai Mempersiapkan!</h3>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="banner-btn discover-btn-banner">
-                                <a href="about.html" class="text-decoration-none"><i
-                                        class="fa fa-clipboard-list"></i>Make Reservations</a>
+                                <a href="{{ route('user.catalog') }}" class="text-decoration-none"><i
+                                        class="fa fa-clipboard-list"></i>Lihat Paket</a>
                             </div>
-                            <div class="learn-btn">
-                                <a href="about.html" class="text-decoration-none">learn more</a>
-                            </div>
+                         
                         </div>
                         <div class="col-lg-1 col-md-1 col-sm-1 d-lg-block d-none"></div>
                     </div>
@@ -194,11 +192,10 @@
                         <div class="footer-right-box">
                             <a href="index.html" class="text-decoration-none">
                                 <figure class="footer-logo"><img
-                                        src="{{ asset('assets-landing/images/footer-logo.png') }}" alt=""
-                                        class="img-fluid"></figure>
+                                        src="{{ asset('assets-landing/logo.png') }}" alt=""
+                                        class="img-fluid" style="max-width: 100px;"></figure>
                             </a>
-                            <p class="footer-section-text">Lorem ipsum dolor sit amet, consectetur adipg iscing elitsed
-                                do eiusmod tempororem ipsumf dolor sit ame consect amet.</p>
+                            <p class="footer-section-text">Keiffa Decoration adalah perusahaan yang bergerak di bidang dekorasi wedding. Kami menyediakan berbagai macam paket dekorasi yang dapat disesuaikan dengan kebutuhan dan keinginan Anda.</p>
                             <ul class="list-unstyled footer-social-icons">
                                 <li class="list-item">
                                     <a href="#"><i class="fa-brands fa-facebook-f marginLeft facebook"></i></a>
@@ -212,88 +209,50 @@
                     <div class="col-lg-1 col-md-1 col-sm-1 d-xl-block d-none"></div>
                     <div class="col-xl-3 col-lg-4 col-md-2 col-sm-12 d-lg-block d-none">
                         <div class="company-text">
-                            <p class="company-title">Company</p>
+                            <p class="company-title">Menu</p>
                             <ul class="list-unstyled footer-ul1">
                                 <li>
                                     <i class="fa-solid fa-caret-right"></i>
-                                    <a href="about.html" class="text-decoration-none footer-link-p">
-                                        About
+                                    <a href="{{ route('user.index') }}" class="text-decoration-none footer-link-p">
+                                        Beranda
                                     </a>
                                 </li>
                                 <li>
                                     <i class="fa-solid fa-caret-right"></i>
-                                    <a href="services.html" class="text-decoration-none footer-link-p">
-                                        Services
+                                    <a href="{{ route('user.catalog') }}" class="text-decoration-none footer-link-p">
+                                        Paket Dekorasi Wedding
                                     </a>
                                 </li>
                                 <li>
                                     <i class="fa-solid fa-caret-right"></i>
-                                    <a href="gallery.html" class="text-decoration-none footer-link-p">
-                                        Gallery
+                                    <a href="{{ route('user.portfolio') }}" class="text-decoration-none footer-link-p">
+                                        Portofolio
                                     </a>
                                 </li>
                                 <li>
                                     <i class="fa-solid fa-caret-right"></i>
-                                    <a href="organizer.html" class="text-decoration-none footer-link-p">
-                                        Organizer
+                                    <a href="{{ route('user.order') }}" class="text-decoration-none footer-link-p">
+                                        Pesanan
+                                    </a>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-caret-right"></i>
+                                    <a href="{{ route('user.review') }}" class="text-decoration-none footer-link-p">
+                                        Review
                                     </a>
                                 </li>
                             </ul>
-                            <ul class="list-unstyled footer-ul2">
-                                <li>
-                                    <i class="fa-solid fa-caret-right"></i>
-                                    <a href="index.html" class="text-decoration-none footer-link-p">
-                                        Home
-                                    </a>
-                                </li>
-                                <li>
-                                    <i class="fa-solid fa-caret-right"></i>
-                                    <a href="pricing.html" class="text-decoration-none footer-link-p">
-                                        Pricing
-                                    </a>
-                                </li>
-                                <li>
-                                    <i class="fa-solid fa-caret-right"></i>
-                                    <a href="contact.html" class="text-decoration-none footer-link-p">
-                                        Contact Us
-                                    </a>
-                                </li>
-                                <li>
-                                    <i class="fa-solid fa-caret-right"></i>
-                                    <a href="single_gallery.html" class="text-decoration-none footer-link-p">
-                                        Gallery Single
-                                    </a>
-                                </li>
-                            </ul>
+                            
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 d-md-block d-none">
-                        <div class="footer-list footer-link contact-list">
-                            <div class="icon-list-box1">
-                                <ul class="list-unstyled contact-us-ul">
-                                    <li class="list-item">
-                                        <i class="fa-sharp fa-solid fa-phone-volume footer-location3"></i>
-                                        <p class="contact-title">Call Us: </p>
-                                        <a href="tel:+4733378901"
-                                            class="text-decoration-none footer-link-auto">(123)456-789-00</a>
-                                    </li>
-                                    <li class="list-item">
-                                        <i class="fa fa-envelope footer-location3"></i>
-                                        <p class="contact-title">Email Us:</p>
-                                        <a href="mailto:webmaster@example.com"
-                                            class="text-decoration-none footer-link-auto">help@Bridely.com</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-lg-5 col-md-6 col-sm-12">
 
                     </div>
                     <div class="col-lg-7 col-md-6 col-sm-12">
-                        <p class="footer-end-text">Copyright ©2024 Keiffa Decoration All Rights Reserved</p>
+                        <p class="footer-end-text">Hak Cipta ©2024 Keiffa Decoration Semua Hak Dilindungi</p>
                     </div>
                 </div>
             </div>

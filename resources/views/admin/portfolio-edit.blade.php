@@ -20,40 +20,40 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group mb-3">
-                            <label for="package_name">Package Name</label>
+                            <label for="package_name">Nama Paket</label>
                             <input type="text" name="package_name" id="package_name" class="form-control"
-                                placeholder="Package Name" required value="{{ $portfolio->package_name }}">
+                                placeholder="Nama Paket" required value="{{ $portfolio->package_name }}">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="venue_name">Venue Name</label>
+                            <label for="venue_name">Nama Venue</label>
                             <input type="text" name="venue_name" id="venue_name" class="form-control"
-                                placeholder="Venue Name" required value="{{ $portfolio->venue_name }}">
+                                placeholder="Nama Venue" required value="{{ $portfolio->venue_name }}">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="bride_name">Bride Name</label>
+                            <label for="bride_name">Nama Pengantin Wanita</label>
                             <input type="text" name="bride_name" id="bride_name" class="form-control"
-                                placeholder="Bride Name" required value="{{ $portfolio->bride_name }}">
+                                placeholder="Nama Pengantin Wanita" required value="{{ $portfolio->bride_name }}">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="groom_name">Groom Name</label>
+                            <label for="groom_name">Nama Pengantin Pria</label>
                             <input type="text" name="groom_name" id="groom_name" class="form-control"
-                                placeholder="Groom Name" required value="{{ $portfolio->groom_name }}">
+                                placeholder="Nama Pengantin Pria" required value="{{ $portfolio->groom_name }}">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group mb-3">
-                            <label for="total_price">Total Price</label>
+                            <label for="total_price">Total Harga</label>
                             <input type="number" name="total_price" id="total_price" class="form-control"
-                                placeholder="Total Price" required value="{{ $portfolio->total_price }}">
+                                placeholder="Total Harga" required value="{{ $portfolio->total_price }}">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="code_order">Code Order</label>
+                            <label for="code_order">Kode Pesanan</label>
                             <input type="text" name="code_order" id="code_order" class="form-control"
-                                placeholder="Code Order" required value="{{ $portfolio->code_order }}">
+                                placeholder="Kode Pesanan" required value="{{ $portfolio->code_order }}">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="location">Location</label>
-                            <input type="text" name="location" id="location" class="form-control" placeholder="Location"
+                            <label for="location">Lokasi</label>
+                            <input type="text" name="location" id="location" class="form-control" placeholder="Lokasi"
                                 required value="{{ $portfolio->location }}">
                         </div>
                         <button type="submit" class="btn btn-primary" style="background-color: #7E4752; border-color: #fff;">Update</button>
