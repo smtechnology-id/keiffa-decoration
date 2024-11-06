@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-5 mb-5">
-    <h5>Halaman Detail Checkout {{ $order->code_order }}</h5>
+    <h5>Halaman Detail Checkout </h5>
 
     <div class="card">
         <div class="card-body">
@@ -62,6 +62,9 @@
                         <tr>
                             <th>Bukti Pembayaran Down Payment</th>
                             <td><a href="{{ asset('storage/payment_proof/' . $downPayment->payment_proof) }}" target="_blank">Lihat Bukti Pembayaran</a></td>
+                            <td>
+                                Nominal Terverifikasi : Rp. {{ number_format($downPayment->nominal, 0, ',', '.') }}
+                            </td>
                             <td>
                                 @if ($downPayment->status == 'pending')
                                     <span class="badge badge-warning">Menunggu Konfirmasi</span>

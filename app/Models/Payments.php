@@ -15,6 +15,7 @@ class Payments extends Model
         'code_order',
         'jenis',
         'payment_proof',
+        'nominal',
         'status',
     ];
 

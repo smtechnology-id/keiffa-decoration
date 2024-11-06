@@ -54,7 +54,7 @@ Route::group(['middleware' => ['authCheck:admin']], function () {
     // Order
     Route::get('/admin/order', [AdminController::class, 'order'])->name('admin.order');
     Route::get('/admin/order/detail/{code_order}', [AdminController::class, 'orderDetail'])->name('admin.order.detail');
-    Route::get('/admin/confirm-payment/{id}/{status}', [AdminController::class, 'confirmPayment'])->name('admin.confirm-payment');
+    Route::post('/admin/confirm-payment', [AdminController::class, 'confirmPayment'])->name('admin.confirm-payment');
 
     // Portfolio
     Route::get('/admin/portfolio', [AdminController::class, 'portfolio'])->name('admin.portfolio');
@@ -63,6 +63,8 @@ Route::group(['middleware' => ['authCheck:admin']], function () {
     Route::get('/admin/portfolio/edit/{id}', [AdminController::class, 'portfolioEdit'])->name('admin.portfolio.edit');
     Route::post('/admin/portfolio/update', [AdminController::class, 'portfolioUpdatePost'])->name('admin.portfolio.updatePost');
     Route::get('/admin/portfolio/delete/{id}', [AdminController::class, 'portfolioDelete'])->name('admin.portfolio.delete');
+
+
 });
 
 Route::group(['middleware' => ['authCheck:user']], function () {

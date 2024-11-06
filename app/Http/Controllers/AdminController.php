@@ -228,10 +228,28 @@ class AdminController extends Controller
         return view('admin.order-detail', compact('order', 'package', 'additional', 'downPayment', 'fullPayment'));
     }
 
-    public function confirmPayment($id, $status)
+    public function confirmPayment(Request $request)
     {
-        $payment = Payments::find($id);
-        $payment->update(['status' => $status]);
+        $request->validate([
+            'id' => 'required',
+            'status' => 'required',
+            'nominal' => 'required',
+        ]);
+       
+        $payment = Payments::find($request->id);
+        $payment->update(['status' => $request->status],);
+        $payment->update(['nominal' => $request->nominal]);
+
+        if ($request->status == 'confirmed') {
+            $order = Orders::find($payment->order_id);
+            $order->payment_total = $order->payment_total + $request->nominal;
+            if ($order->payment_total == $order->total_price) {
+                $order->status_pembayaran = 'full';
+            } elseif ($order->payment_total < $order->total_price) {
+                $order->status_pembayaran = 'dp';
+            }
+            $order->save();
+        }
         return redirect()->back()->with('success', 'Payment status updated successfully');
     }
 

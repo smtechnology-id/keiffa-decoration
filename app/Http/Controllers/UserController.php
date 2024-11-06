@@ -77,9 +77,10 @@ class UserController extends Controller
         $package = Package::where('packageSlug', $slug)->first();
         if ($package) {
             $cart = Cart::where('package_id', $package->id)->where('user_id', auth()->user()->id)->first();
-            $cart->quantity += 1;
-            $cart->total_price = $cart->quantity * $package->harga;
-            $cart->save();
+            // maksimal 1
+            if($cart->quantity >= 1){
+                return redirect()->route('user.cart')->with('error', 'Maksimal Quantity 1');
+            }
         } else {
             $additional = Additional::where('slug', $slug)->first();
             $cart = Cart::where('additional_id', $additional->id)->where('user_id', auth()->user()->id)->first();
@@ -144,6 +145,10 @@ class UserController extends Controller
         if ($cart_additional->isEmpty() && $cart_package->isEmpty()) {
             return redirect()->route('user.cart')->with('error', 'Cart is empty');
         }
+        if($cart_package->isEmpty()){
+            return redirect()->route('user.cart')->with('error', 'Minimal memesan 1 Paket Dekorasi Wedding');
+        }
+        
 
         $code_order = 'INV-' . date('Ymd') . '-' . rand(10000, 99999);
         $order = Orders::create([
@@ -184,7 +189,7 @@ class UserController extends Controller
                 ]);
             }
         }
-        return view('user.payment', ['code_order' => $code_order])->with('success', 'Checkout Success');
+        return redirect()->route('user.payment', $code_order)->with('success', 'Checkout Success');
     }
 
     public function payment($code_order)
