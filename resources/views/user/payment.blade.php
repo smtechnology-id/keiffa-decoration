@@ -60,11 +60,8 @@
                 @else
                     <table class="table">
                         <tr>
-                            <th>Bukti Pembayaran Down Payment</th>
-                            <td><a href="{{ asset('storage/payment_proof/' . $downPayment->payment_proof) }}" target="_blank">Lihat Bukti Pembayaran</a></td>
-                            <td>
-                                Nominal Terverifikasi : Rp. {{ number_format($downPayment->nominal, 0, ',', '.') }}
-                            </td>
+                            <td><a href="{{ asset('storage/payment_proof/' . $downPayment->payment_proof) }}" target="_blank">Lihat Bukti Pembayaran Down Payment</a></td>
+                            
                             <td>
                                 @if ($downPayment->status == 'pending')
                                     <span class="badge badge-warning">Menunggu Konfirmasi</span>
@@ -77,6 +74,28 @@
                             <td>{{ $downPayment->created_at->format('d M Y H:i') }}</td>
                         </tr>
                     </table>
+                    @if ($downPayment->status == 'rejected')
+                    <form action="{{ route('user.payment.down.update') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-6 d-flex align-items-center">
+                                <div class="form-group">
+                                    <input type="hidden" name="order_id" value="{{ $order->id }}">
+                                    <input type="hidden" name="code_order" value="{{ $order->code_order }}">
+                                    <input type="hidden" name="payment_id" value="{{ $downPayment->id }}">
+                                    <label for="down_payment" class="text-danger">Pembayaran DP Ditolak, Silahkan Upload Ulang Bukti Pembayaran DP</label>
+                                    <input type="file" class="form-control" id="down_payment" name="down_payment" required>
+                                    @error('down_payment')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center"> 
+                                <button type="submit" class="btn btn-primary" style="background-color: #7E4752; border: none;">Konfirmasi DP</button>
+                            </div>
+                        </div>
+                    </form>
+                    @endif
                 @endif
             </div>
             <div class="col-md-12">
@@ -99,42 +118,42 @@
                     </div>
                 </form>
                 @else
-                    <table class="table">
-                        <tr>
-                            <th>Bukti Pembayaran Remaining Payment</th>
-                            <td><a href="{{ asset('storage/payment_proof/' . $remainingPayment->payment_proof) }}" target="_blank">Lihat Bukti Pembayaran</a></td>
-                            <td>
-                                @if ($remainingPayment->status == 'pending')
-                                    <span class="badge badge-warning">Menunggu Konfirmasi</span>
-                                @elseif($remainingPayment->status == 'confirmed')
-                                    <span class="badge badge-success">Pembayaran Valid</span>
-                                @elseif($remainingPayment->status == 'rejected')
-                                    <span class="badge badge-danger">Pembayaran Ditolak </span>
-                                    
-                                @endif
-                            </td>
-                            <td>{{ $remainingPayment->created_at->format('d M Y H:i') }}</td>
-                        </tr>
-                    </table>
+                <table class="table">
+                    <tr>
+                        <td><a href="{{ asset('storage/payment_proof/' . $remainingPayment->payment_proof) }}" target="_blank">Lihat Bukti Pembayaran Remaining Payment</a></td>
+                       
+                        <td>
+                            @if ($downPayment->status == 'pending')
+                                <span class="badge badge-warning">Menunggu Konfirmasi</span>
+                            @elseif($downPayment->status == 'confirmed')
+                                <span class="badge badge-success">Pembayaran Valid</span>
+                            @elseif($downPayment->status == 'rejected')
+                                <span class="badge badge-danger">Pembayaran Ditolak</span>
+                            @endif
+                        </td>
+                        <td>{{ $downPayment->created_at->format('d M Y H:i') }}</td>
+                    </tr>
+                </table>
                     @if ($remainingPayment->status == 'rejected')
-                    <form action="{{ route('user.payment.remaining.update') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-6 d-flex align-items-center">
-                                <div class="form-group">
-                                    <input type="hidden" name="order_id" value="{{ $order->id }}">
-                                    <input type="hidden" name="code_order" value="{{ $order->code_order }}">
-                                    <input type="hidden" name="payment_id" value="{{ $remainingPayment->id }}">
-                                    <label for="remaining_payment">Upload Ulang Bukti Pembayaran Remaining Payment</label>
-                                    <input type="file" class="form-control" id="remaining_payment" name="remaining_payment" required>
+                    <div class="container mt-3">
+                        <form action="{{ route('user.payment.remaining.update') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-6 d-flex align-items-center">
+                                    <div class="form-group">
+                                        <input type="hidden" name="order_id" value="{{ $order->id }}">
+                                        <input type="hidden" name="code_order" value="{{ $order->code_order }}">
+                                        <input type="hidden" name="payment_id" value="{{ $remainingPayment->id }}">
+                                        <label for="remaining_payment" class="text-danger">Pembayaran Pelunasan Ditolak, Silahkan Upload Ulang Bukti Pelunasan</label>
+                                        <input type="file" class="form-control" id="remaining_payment" name="remaining_payment" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 d-flex align-items-center">
+                                    <button type="submit" class="btn btn-primary" style="background-color: #7E4752; border: none;">Konfirmasi Remaining Payment</button>
                                 </div>
                             </div>
-                            <div class="col-md-6 d-flex align-items-center">
-                                
-                                <button type="submit" class="btn btn-primary" style="background-color: #7E4752; border: none;">Konfirmasi Remaining Payment</button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                     @endif
                 @endif
             </div>

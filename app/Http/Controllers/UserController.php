@@ -37,8 +37,15 @@ class UserController extends Controller
 
     public function cartAdd($slug)
     {
+        
         $package = Package::where('packageSlug', $slug)->first();
         if ($package) {
+            // Setiap user hanya bisa memesan 1 paket di keranjang
+            $cartPackage = Cart::where('jenis', 'package')->where('user_id', auth()->user()->id)->count();
+            if ($cartPackage >= 1) {
+                return redirect()->route('user.cart')->with('error', 'Anda hanya bisa memesan 1 paket di keranjang');
+            }
+
             $cart = Cart::where('package_id', $package->id)->where('user_id', auth()->user()->id)->first();
             if ($cart) {
                 return redirect()->route('user.cart')->with('error', 'Package already in cart');
@@ -266,6 +273,27 @@ class UserController extends Controller
             // Store the uploaded file in the 'payment_proof' directory
             $paymentProofPath = $request->file('remaining_payment')->store('payment_proof', 'public');
             $namePaymentProof = $request->file('remaining_payment')->hashName();
+        }
+        $payment = Payments::find($request->payment_id);
+        $payment->update([
+            'payment_proof' => $namePaymentProof,
+            'status' => 'pending',
+        ]);
+        return redirect()->route('user.payment', $request->code_order)->with('success', 'Payment Success');
+    }
+
+    public function paymentDownUpdate(Request $request)
+    {
+        $request->validate([
+            'down_payment' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'order_id' => 'required',
+            'code_order' => 'required',
+            'payment_id' => 'required',
+        ]);
+        if ($request->hasFile('down_payment')) {
+            // Store the uploaded file in the 'payment_proof' directory
+            $paymentProofPath = $request->file('down_payment')->store('payment_proof', 'public');
+            $namePaymentProof = $request->file('down_payment')->hashName();
         }
         $payment = Payments::find($request->payment_id);
         $payment->update([

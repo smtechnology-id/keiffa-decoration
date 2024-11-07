@@ -92,6 +92,10 @@
                         </li>
                         
                         <li class="@yield('active-logout')">
+                            <a href="{{ route('admin.user') }}" class="active"><i
+                                    class="material-icons-two-tone">person</i>Data User</a>
+                        </li>
+                        <li class="@yield('active-logout')">
                             <a href="{{ route('logout') }}" class="active"><i
                                     class="material-icons-two-tone">logout</i>Logout</a>
                         </li>

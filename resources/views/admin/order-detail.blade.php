@@ -156,9 +156,15 @@
                                     @if ($downPayment)
                                         @if ($downPayment->status == 'pending')
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary" style="background-color: #7E4752; border: none;" data-bs-toggle="modal"
+                                            <button type="button" class="btn btn-primary mt-2"
+                                                style="background-color: #7E4752; border: none;" data-bs-toggle="modal"
                                                 data-bs-target="#dpModal">
                                                 Konfirmasi DP
+                                            </button>
+                                            <button type="button" class="btn btn-danger mt-2"
+                                                style="background-color: #636F54; border: none;" data-bs-toggle="modal"
+                                                data-bs-target="#rejectDpModal">
+                                                Reject
                                             </button>
 
                                             <!-- Modal -->
@@ -188,8 +194,40 @@
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-primary" style="background-color: #7E4752; border: none;">Konfirmasi
+                                                                <button type="submit" class="btn btn-primary"
+                                                                    style="background-color: #7E4752; border: none;">Konfirmasi
                                                                     DP</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" id="rejectDpModal" tabindex="-1"
+                                                aria-labelledby="rejectModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <form action="{{ route('admin.reject-payment') }}" method="POST">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="rejectDpModal">Reject
+                                                                    Sisa Pembayaran</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                @csrf
+                                                                {{-- Input Nominal DP --}}
+                                                                <input type="hidden" name="id"
+                                                                    value="{{ $downPayment->id }}">
+                                                                <input type="hidden" name="status" value="rejected">
+                                                                <p>Apakah anda yakin ingin menolak pembayaran ini?</p>
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary"
+                                                                    style="background-color: #636F54; border: none;">Reject</button>
+
                                                             </div>
                                                         </form>
                                                     </div>
@@ -202,7 +240,8 @@
                                             <label for="" class="badge badge-danger">Down Payment Ditolak</label>
                                         @endif
                                     @else
-                                        <label for="" class="badge badge-danger">Down Payment Belum Dibayar</label>
+                                        <label for="" class="badge badge-danger">Down Payment Belum
+                                            Dibayar</label>
                                     @endif
                                 </td>
                             </tr>
@@ -212,11 +251,13 @@
                                 <td>
                                     @if ($fullPayment)
                                         @if ($fullPayment->status == 'pending')
-                                            <button type="button" class="btn btn-primary" style="background-color: #7E4752; border: none;" data-bs-toggle="modal"
+                                            <button type="button" class="btn btn-primary mt-2"
+                                                style="background-color: #7E4752; border: none;" data-bs-toggle="modal"
                                                 data-bs-target="#rpModal">
-                                                Konfirmasi
+                                                Konfirmasi Pelunasan
                                             </button>
-                                            <button type="button" class="btn btn-danger mt-2" style="background-color: #636F54; border: none;" data-bs-toggle="modal"
+                                            <button type="button" class="btn btn-danger mt-2"
+                                                style="background-color: #636F54; border: none;" data-bs-toggle="modal"
                                                 data-bs-target="#rejectModal">
                                                 Reject
                                             </button>
@@ -226,7 +267,8 @@
                                                 aria-labelledby="rpModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
-                                                        <form action="{{ route('admin.confirm-payment') }}" method="POST">
+                                                        <form action="{{ route('admin.confirm-payment') }}"
+                                                            method="POST">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="rpModalLabel">Konfirmasi
                                                                     Sisa Pembayaran</h5>
@@ -251,9 +293,10 @@
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-primary" style="background-color: #7E4752; border: none;">Konfirmasi
+                                                                <button type="submit" class="btn btn-primary"
+                                                                    style="background-color: #7E4752; border: none;">Konfirmasi
                                                                     DP</button>
-                                                                
+
                                                             </div>
                                                         </form>
                                                     </div>
@@ -263,7 +306,8 @@
                                                 aria-labelledby="rejectModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
-                                                        <form action="{{ route('admin.reject-payment') }}" method="POST">
+                                                        <form action="{{ route('admin.reject-payment') }}"
+                                                            method="POST">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="rejectModalLabel">Reject
                                                                     Sisa Pembayaran</h5>
@@ -277,13 +321,14 @@
                                                                     value="{{ $fullPayment->id }}">
                                                                 <input type="hidden" name="status" value="rejected">
                                                                 <p>Apakah anda yakin ingin menolak pembayaran ini?</p>
-                                                                
+
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-primary" style="background-color: #636F54; border: none;">Reject</button>
-                                                                
+                                                                <button type="submit" class="btn btn-primary"
+                                                                    style="background-color: #636F54; border: none;">Reject</button>
+
                                                             </div>
                                                         </form>
                                                     </div>
@@ -293,7 +338,8 @@
                                             <label for="" class="badge badge-success">Remaining Payment
                                                 Terkonfirmasi</label>
                                         @elseif($fullPayment->status == 'rejected')
-                                            <label for="" class="badge badge-danger">Remaining Payment Ditolak</label>
+                                            <label for="" class="badge badge-danger">Remaining Payment
+                                                Ditolak</label>
                                         @endif
                                     @else
                                         <label for="" class="badge badge-danger">Remaining Payment Belum

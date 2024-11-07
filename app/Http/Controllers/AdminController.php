@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Additional;
+use App\Models\User;
 use App\Models\Orders;
+use App\Models\Review;
 use App\Models\Package;
 use App\Models\Payment;
 use App\Models\Payments;
 use App\Models\Portfolio;
-use App\Models\ProductOrder;
-use App\Models\Review;
-use Illuminate\Http\Request;
+use App\Models\Additional;
 use Illuminate\Support\Str;
+use App\Models\ProductOrder;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -96,7 +98,7 @@ class AdminController extends Controller
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->storeAs('public/packages', $imageName);
-        } 
+        }
         $packageSlug = 'package-' . Str::slug($request->nama);
         $package->update([
             'image' => $request->hasFile('image') ? $imageName : $package->image,
@@ -237,7 +239,7 @@ class AdminController extends Controller
             'status' => 'required',
             'nominal' => 'required',
         ]);
-       
+
         $payment = Payments::find($request->id);
         $payment->update(['status' => $request->status],);
         $payment->update(['nominal' => $request->nominal]);
@@ -364,5 +366,38 @@ class AdminController extends Controller
         $review = Review::find($id);
         $review->update(['status' => 'rejected']);
         return redirect()->back()->with('success', 'Review rejected successfully');
+    }
+
+    // User
+    public function user()
+    {
+        $users = User::where('level', 'user')->get();
+        return view('admin.user', compact('users'));
+    }
+
+    public function userUpdate(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'no_hp' => 'required',
+            'jenis_kelamin' => 'required',
+            'password' => 'nullable|min:8|confirmed',
+            'password_confirmation' => 'nullable|min:8',
+        ]);
+        $user = User::find($request->id);
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'no_hp' => $request->no_hp,
+            'jenis_kelamin' => $request->jenis_kelamin,
+        ]);
+
+        if ($request->filled('password')) {
+            $user->update([
+                'password' => Hash::make($request->password),
+            ]);
+        }
+        return redirect()->route('admin.user')->with('success', 'User updated successfully');
     }
 }

@@ -80,11 +80,11 @@
         </div>
         <header class="header">
             <div class="main-header">
-                <div class="container">
+                <div class="container-fluid">
                     <nav class="navbar navbar-expand-lg navbar-light p-0">
-                        <a class="navbar-brand pt-0" href="index.html"><img
+                        <a class="navbar-brand pt-0" href="{{ route('user.index') }}"><img
                                 src="{{ asset('assets-landing/logo.png') }}" alt=""
-                                class="img-fluid diverge-logo" style="max-width: 80px;"></a>
+                                class="img-fluid diverge-logo" style="max-width: 100px;"></a>
                         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -157,18 +157,9 @@
 
 
     <!-- Instagram-feed-section -->
-
-
     <div class="footer-section">
         <div class="footer-inner">
-            <figure class="mb-0 footer-hearts">
-                <img src="{{ asset('assets-landing/images/footer-birds-img.png') }}" alt="" class="star">
-            </figure>
-            <div class="footer-msg floating-chat">
-                <figure class="mb-0 footer-chat-img">
-                    <img src="{{ asset('assets-landing/images/footer-chat-img.png') }}" alt="">
-                </figure>
-            </div>
+           
             <div class="container">
                 <div class="footer-content-box">
                     <div class="row">
@@ -188,26 +179,20 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-xl-5 col-lg-4 col-md-6 col-sm-12">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div class="footer-right-box">
-                            <a href="index.html" class="text-decoration-none">
-                                <figure class="footer-logo"><img
-                                        src="{{ asset('assets-landing/logo.png') }}" alt=""
-                                        class="img-fluid" style="max-width: 100px;"></figure>
+                            <a href="{{ route('user.index') }}" class="text-decoration-none">
+                                    <figure class="footer-logo"><img
+                                            src="{{ asset('assets-landing/logo.png') }}" alt=""
+                                            class="img-fluid" style="max-width: 100px;"></figure>
                             </a>
                             <p class="footer-section-text">Keiffa Decoration adalah perusahaan yang bergerak di bidang dekorasi wedding. Kami menyediakan berbagai macam paket dekorasi yang dapat disesuaikan dengan kebutuhan dan keinginan Anda.</p>
                             <ul class="list-unstyled footer-social-icons">
-                                <li class="list-item">
-                                    <a href="#"><i class="fa-brands fa-facebook-f marginLeft facebook"></i></a>
-                                    <a href="#"><i class="fa-brands fa-twitter marginLeft twiter"></i></a>
-                                    <a href="#"><i class="fa-brands fa-linkedin-in marginLeft linkedin"></i></a>
-                                    <a href="#"><i class="fa-solid fa-g marginLeft gmil"></i></a>
-                                </li>
+                               
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-1 col-md-1 col-sm-1 d-xl-block d-none"></div>
-                    <div class="col-xl-3 col-lg-4 col-md-2 col-sm-12 d-lg-block d-none">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div class="company-text">
                             <p class="company-title">Menu</p>
                             <ul class="list-unstyled footer-ul1">

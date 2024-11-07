@@ -26,7 +26,7 @@
                             Lorem ipsum dolor sit amet consectetur adipiscing elit sed doeiusm tempor incididunt
                         </p>
                         <div class="banner-btn discover-btn-banner">
-                            <a href="about.html" class="text-decoration-none"><i class="fa fa-clipboard-list"></i>Make
+                            <a href="{{ route('user.catalog') }}" class="text-decoration-none"><i class="fa fa-clipboard-list"></i>Make
                                 Reservations</a>
                         </div>
                     </div>

@@ -13,7 +13,7 @@
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
             <div class="gallery_content">
                 <figure class="contact-form-img">
-                    <img src="{{ asset('storage/packages/' . $package->image) }}" alt="" class="img-fluid" style="border-radius: 50px 0px 50px 0px;" width="100%">
+                    <img src="{{ asset('storage/packages/' . $package->image) }}" alt="" class="img-fluid" style="border-radius: 50px 0px 50px 0px; height: 350px; object-fit: cover;" width="100%">
                 </figure>
                 <div class="banner-btn discover-btn-banner">
                     <a href="" class="text-decoration-none">Rp. {{ number_format($package->harga, 0, ',', '.') }}</a>

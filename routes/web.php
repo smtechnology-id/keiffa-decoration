@@ -69,6 +69,10 @@ Route::group(['middleware' => ['authCheck:admin']], function () {
     Route::get('/admin/review/approve/{id}', [AdminController::class, 'reviewApprove'])->name('admin.review.approve');
     Route::get('/admin/review/reject/{id}', [AdminController::class, 'reviewReject'])->name('admin.review.reject');
 
+    // User
+    Route::get('/admin/user', [AdminController::class, 'user'])->name('admin.user');
+    Route::post('/admin/user/update', [AdminController::class, 'userUpdate'])->name('admin.user.update');
+
 
 });
 
@@ -94,6 +98,7 @@ Route::group(['middleware' => ['authCheck:user']], function () {
     Route::post('/user/payment/down', [UserController::class, 'paymentDown'])->name('user.payment.down');
     Route::post('/user/payment/remaining', [UserController::class, 'paymentRemaining'])->name('user.payment.remaining');
     Route::post('/user/payment/remaining/update', [UserController::class, 'paymentRemainingUpdate'])->name('user.payment.remaining.update');
+    Route::post('/user/payment/down/update', [UserController::class, 'paymentDownUpdate'])->name('user.payment.down.update');
 
     // Order Detail
     Route::get('/user/order/detail/{code_order}', [UserController::class, 'orderDetail'])->name('user.order-detail');
