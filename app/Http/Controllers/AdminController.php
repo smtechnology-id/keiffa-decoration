@@ -48,6 +48,15 @@ class AdminController extends Controller
             'kotak_angpao' => 'required',
             'deskripsi' => 'nullable',
         ]);
+        // Set Text validasi ke bahasa indonesia
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10048',
+        ], [
+            'image.required' => 'Gambar harus diisi',
+            'image.image' => 'Gambar harus berupa gambar',
+            'image.mimes' => 'Gambar harus berupa jpeg, png, jpg, gif, atau svg',
+            'image.max' => 'Gambar maksimal 10MB',
+        ]);
 
         // Simpan gambar
         $imageName = time() . '.' . $request->image->extension();
