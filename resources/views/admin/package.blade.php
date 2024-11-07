@@ -20,7 +20,8 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title text-center">{{ $package->nama }}</h5>
+                                <h5 class="card-title text-center" style="font-size: 20px;">{{ $package->nama }}</h5>
+                                <p class="card-title text-center" style="font-size: 12px;"  >PCK-000{{ $package->id }}</p>
                                 <table class="table table-borderless">
                                     <tr>
                                         <td>

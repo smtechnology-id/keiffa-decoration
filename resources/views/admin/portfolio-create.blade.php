@@ -45,8 +45,11 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="code_order">Kode Pesanan</label>
-                            <input type="text" name="code_order" id="code_order" class="form-control"
-                                placeholder="Kode Pesanan" required>
+                           <select name="code_order" id="code_order" class="form-control">
+                            @foreach ($orders as $order)
+                                <option value="{{ $order->code_order }}">{{ $order->code_order }}</option>
+                            @endforeach
+                           </select>
                         </div>
                         <div class="form-group mb-3">
                             <label for="location">Location</label>

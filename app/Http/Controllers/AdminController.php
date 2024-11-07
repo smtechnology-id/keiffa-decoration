@@ -288,7 +288,8 @@ class AdminController extends Controller
 
     public function portfolioCreate()
     {
-        return view('admin.portfolio-create');
+        $orders = Orders::all();    
+        return view('admin.portfolio-create', compact('orders'));
     }
 
     public function portfolioCreatePost(Request $request)

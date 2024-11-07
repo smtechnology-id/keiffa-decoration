@@ -53,23 +53,7 @@
                                 <h2 class="text-primary" style="font-weight: 600; color: #7e4752;">Keiffa Decoration
                                 </h2>
                             </div>
-                            @if (session('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
-                            @error('error')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                            {{-- Error Validasi --}}
-
-                            @error('email')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                            
                             <form action="{{ route('registerPost') }}" method="post">
                                 @csrf
                                 <div class="mb-3">

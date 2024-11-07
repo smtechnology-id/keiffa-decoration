@@ -14,16 +14,14 @@
                 <figure class="contact-form-img">
                     <img src="{{ asset('storage/additional/' . $additional->image) }}" alt="" class="img-fluid" style="border-radius: 50px 0px 50px 0px; height: 350px; object-fit: cover;" width="100%">
                 </figure>
-                <div class="banner-btn discover-btn-banner">
-                    <a href="" class="text-decoration-none">Rp. {{ number_format($additional->harga, 0, ',', '.') }}</a>
+                <div class="banner-btn discover-btn-banner text-center">
+                    <a href="" class="text-decoration-none text-center mt-3" style="color: #7E4752;">Rp. {{ number_format($additional->harga, 0, ',', '.') }}</a>
                 </div>
                 <h5 class="text-center">{{ $additional->nama }}</h5>
                 <ul class="list-unstyled">
                     <div class="row">
-                        <div class="col-md-6">
-                            
-                        <div class="col-md-6">
-                            <li>Deskripsi : {{ $additional->deskripsi }}</li>
+                        <div class="col-md-12">
+                            <li class="text-center">{{ $additional->deskripsi }}</li>
                         </div>
                     </div>
                 </ul>

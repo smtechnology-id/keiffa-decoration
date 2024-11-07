@@ -32,8 +32,8 @@
             <div class="col-md-6">
                 <h5 class="">Metode Pembayaran</h5>
                 <ul class="list-unstyled">
-                    <li>BCA : 3423052461 a/n Yuli Siswandining</li>
-                    <li>Mandiri : 0700004218314 a/n Yuli Siswandining</li>
+                    <li>BCA : 3423052461 a/n Yuli Siswandiningsih</li>
+                    <li>Mandiri : 0700004218314 a/n Yuli Siswandiningsih</li>
                 </ul>
             </div>
             <div class="col-md-12">
@@ -123,16 +123,17 @@
                         <td><a href="{{ asset('storage/payment_proof/' . $remainingPayment->payment_proof) }}" target="_blank">Lihat Bukti Pembayaran Remaining Payment</a></td>
                        
                         <td>
-                            @if ($downPayment->status == 'pending')
+                            @if ($remainingPayment->status == 'pending')
                                 <span class="badge badge-warning">Menunggu Konfirmasi</span>
-                            @elseif($downPayment->status == 'confirmed')
+                            @elseif($remainingPayment->status == 'confirmed')
                                 <span class="badge badge-success">Pembayaran Valid</span>
-                            @elseif($downPayment->status == 'rejected')
+                            @elseif($remainingPayment->status == 'rejected')
                                 <span class="badge badge-danger">Pembayaran Ditolak</span>
                             @endif
                         </td>
-                        <td>{{ $downPayment->created_at->format('d M Y H:i') }}</td>
+                        <td>{{ $remainingPayment->created_at->format('d M Y H:i') }}</td>
                     </tr>
+                    
                 </table>
                     @if ($remainingPayment->status == 'rejected')
                     <div class="container mt-3">

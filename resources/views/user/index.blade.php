@@ -47,7 +47,7 @@
                     <h2>Apa yang Kami Lakukan, Kami Lakukan Dengan Semangat</h2>
                     <p class="aboutus-p">Kami selalu berusaha memberikan yang terbaik untuk Anda</p>
                     <div class="banner-btn discover-btn-banner">
-                        <a href="{{ route('user.catalog') }}" class="text-decoration-none">Lihat Paket</a>
+                        <a href="{{ route('user.review') }}" class="text-decoration-none">Lihat Review</a>
                     </div>
                 </div>
             </div>

@@ -198,6 +198,8 @@ class UserController extends Controller
                 ]);
             }
         }
+        // Kosongkan keranjang
+        Cart::where('user_id', auth()->user()->id)->delete();
         return redirect()->route('user.payment', $code_order)->with('success', 'Checkout Success');
     }
 
@@ -245,6 +247,12 @@ class UserController extends Controller
             'order_id' => 'required',
             'code_order' => 'required',
         ]);
+        // Validasi apakah sudah DP
+        $downPayment = Payments::where('order_id', $request->order_id)->where('jenis', 'down-payment')->first();
+        if (!$downPayment) {
+            return redirect()->route('user.payment', $request->code_order)->with('error', 'Anda harus membayar DP terlebih dahulu');
+        }
+
         if ($request->hasFile('remaining_payment')) {
             // Store the uploaded file in the 'payment_proof' directory
             $paymentProofPath = $request->file('remaining_payment')->store('payment_proof', 'public');

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('nama_venue')->nullable();
             $table->text('review');
-            $table->enum('status', ['pending', 'approved'])->default('pending');
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamps();
         });
     }

@@ -8,7 +8,7 @@
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 p-3" style="background-color: #fff; border-radius: 20px;">
             <div class="gallery_content">
                 <figure class="contact-form-img">
-                    <img src="{{ asset('storage/portfolios/' . $portfolio->image) }}" alt="" class="img-fluid" style="border-radius: 50px 0px 50px 0px;" width="100%">
+                    <img src="{{ asset('storage/portfolios/' . $portfolio->image) }}" alt="" class="img-fluid" style="border-radius: 50px 0px 50px 0px; height: 350px; object-fit: cover;" width="100%">
                 </figure>
                 <div class="banner-btn discover-btn-banner">
                 </div>

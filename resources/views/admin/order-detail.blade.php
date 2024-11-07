@@ -4,16 +4,16 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h1>Detail Order</h1>
+                <h1>Detail Pesanan</h1>
                 <div class="row">
                     <div class="col-md-12">
                         <table class="table">
                             <thead>
                                 <tr class="text-white" style="background-color: #7E4752;">
-                                    <th class="text-white">Order ID</th>
-                                    <th class="text-white">Payment Status</th>
+                                    <th class="text-white">Kode Pesanan</th>
+                                    <th class="text-white">Status Pembayaran</th>
                                     <th class="text-white">Customer</th>
-                                    <th class="text-white">Total Price</th>
+                                    <th class="text-white">Total Harga</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -33,12 +33,12 @@
                         </table>
                     </div>
                     <div class="col-md-12">
-                        <h3>Product Order</h3>
+                        <h3>Detail Produk Pesanan</h3>
                         <table class="table">
                             <thead>
                                 <tr class="text-white" style="background-color: #7E4752;">
-                                    <th class="text-white">Product</th>
-                                    <th class="text-white">Price</th>
+                                    <th class="text-white">Produk</th>
+                                    <th class="text-white">Harga</th>
                                     <th class="text-white">Qty</th>
                                     <th class="text-white">Total</th>
                                 </tr>
@@ -71,27 +71,27 @@
                         <h3>Detail Order</h3>
                         <table class="table">
                             <tr>
-                                <th>Bride Name</th>
+                                <th>Nama Pengantin Wanita</th>
                                 <td>:</td>
                                 <td>{{ $order->bride_name }}</td>
                             </tr>
                             <tr>
-                                <th>Groom Name</th>
+                                <th>Nama Pengantin Pria</th>
                                 <td>:</td>
                                 <td>{{ $order->groom_name }}</td>
                             </tr>
                             <tr>
-                                <th>Wedding Date</th>
+                                <th>Tanggal Pernikahan</th>
                                 <td>:</td>
                                 <td>{{ $order->wedding_date }}</td>
                             </tr>
                             <tr>
-                                <th>Wedding Location</th>
+                                <th>Lokasi Pernikahan</th>
                                 <td>:</td>
                                 <td>{{ $order->wedding_location }}</td>
                             </tr>
                             <tr>
-                                <th>Wedding Theme</th>
+                                <th>Tema Pernikahan</th>
                                 <td>:</td>
                                 <td>{{ $order->wedding_theme }}</td>
                             </tr>
@@ -134,18 +134,29 @@
                     <div class="col-md-6 d-flex justify-content-center align-items-center flex-column">
                         <h5 class="text-left mb-3">Manage Payment Status</h5>
                         <table class="table">
-                            <tr>
-                                <th>Total Terbayar</th>
-                                <td>:</td>
-                                <td>Rp. {{ number_format($order->payment_total, 0, ',', '.') }}</td>
-                            </tr>
+                            
                             <tr>
                                 <th>Total Harga</th>
                                 <td>:</td>
                                 <td>Rp. {{ number_format($order->total_price, 0, ',', '.') }}</td>
                             </tr>
                             <tr>
-                                <th>Sisa Pembayaran</th>
+                                <th>Nominal Down Payment</th>
+                                <td>:</td>
+                                <td>Rp. {{ number_format($order->total_price * 0.3, 0, ',', '.') }}</td>
+                            </tr>
+                            <tr>
+                                <th>Nominal Sisa Pembayaran</th>
+                                <td>:</td>
+                                <td>Rp. {{ number_format($order->total_price * 0.7, 0, ',', '.') }}</td>
+                            </tr>
+                            <tr>
+                                <th>Total Terbayar Oleh Customer</th>
+                                <td>:</td>
+                                <td>Rp. {{ number_format($order->payment_total, 0, ',', '.') }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tagihan Sisa Pembayaran</th>
                                 <td>:</td>
                                 <td>Rp. {{ number_format($order->total_price - $order->payment_total, 0, ',', '.') }}</td>
                             </tr>

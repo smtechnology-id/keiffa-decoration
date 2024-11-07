@@ -22,11 +22,11 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $additional->nama }}</h5>
                                 <div class="row">
-                                    <div class="col-6 d-flex justify-content-center align-items-center">
+                                    <div class="col-12 d-flex justify-content-center align-items-center">
                                         <img src="{{ asset('storage/additional/' . $additional->image) }}" alt="Image"
                                             style="max-width: 200px; margin-top: 10px; height: 200px; object-fit: cover;">
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12">
                                         <table class="table table-borderless">
                                             <tr>
                                                 <td>Additional Number</td>

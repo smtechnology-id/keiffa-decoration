@@ -68,10 +68,7 @@
                             <ul class="list-unstyled">
                                 <li class="d-inline-block"><a class="d-inline-block email-span text-decoration-none"
                                         href="mailto:info@sencare.com">Folllow us on:</a></li>
-                                <li class="d-inline-block user-li"><i class="fa-brands fa-facebook-f"></i></li>
-                                <li class="d-inline-block user-li"><i class="fa-brands fa-twitter"></i></li>
-                                <li class="d-inline-block user-li"><i class="fa-brands fa-pinterest-p"></i></li>
-                                <li class="d-inline-block user-li"><i class="fa-brands fa-instagram"></i></li>
+                                <li class="d-inline-block user-li"><a href="https://www.instagram.com/keiffa.decoration/profilecard/?igsh=MTZuc3VhMmt3dHFpOA==" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -82,9 +79,9 @@
             <div class="main-header">
                 <div class="container-fluid">
                     <nav class="navbar navbar-expand-lg navbar-light p-0">
-                        <a class="navbar-brand pt-0" href="{{ route('user.index') }}"><img
+                        <a class="navbar-brand pt-0" href=""><img
                                 src="{{ asset('assets-landing/logo.png') }}" alt=""
-                                class="img-fluid diverge-logo" style="max-width: 100px;"></a>
+                                class="img-fluid diverge-logo" style="max-width: 70px;"></a>
                         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -165,12 +162,12 @@
                     <div class="row">
                         <div class="col-lg-1 col-md-1 col-sm-1 d-lg-block d-none"></div>
                         <div class="col-lg-5 col-md-6 col-sm-12">
-                            <h3 class="planning-h3">Mari Mulai Mempersiapkan!</h3>
+                            <h3 class="planning-h3">Lihat hasil dekorasi kami!</h3>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="banner-btn discover-btn-banner">
-                                <a href="{{ route('user.catalog') }}" class="text-decoration-none"><i
-                                        class="fa fa-clipboard-list"></i>Lihat Paket</a>
+                                <a href="{{ route('user.portfolio') }}" class="text-decoration-none"><i
+                                        class="fa fa-clipboard-list"></i>Lihat Portofolio</a>
                             </div>
                          
                         </div>
