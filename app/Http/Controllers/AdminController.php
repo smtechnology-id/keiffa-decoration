@@ -247,10 +247,11 @@ class AdminController extends Controller
             'id' => 'required',
             'status' => 'required',
             'nominal' => 'required',
+            'notes' => 'nullable',
         ]);
 
         $payment = Payments::find($request->id);
-        $payment->update(['status' => $request->status],);
+        $payment->update(['status' => $request->status, 'notes' => $request->notes]);
         $payment->update(['nominal' => $request->nominal]);
 
         if ($request->status == 'confirmed') {
@@ -272,9 +273,10 @@ class AdminController extends Controller
         $request->validate([
             'id' => 'required',
             'status' => 'required',
+            'notes' => 'nullable',
         ]);
         $payment = Payments::find($request->id);
-        $payment->update(['status' => $request->status]);
+        $payment->update(['status' => $request->status, 'notes' => $request->notes]);
         return redirect()->back()->with('success', 'Payment status updated successfully');
     }
 

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('payment_proof');
             $table->integer('nominal')->nullable();
             $table->string('status');
+            $table->string('notes')->nullable();
             $table->timestamps();
         });
     }

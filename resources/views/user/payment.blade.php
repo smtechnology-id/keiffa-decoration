@@ -71,6 +71,9 @@
                                     <span class="badge badge-danger">Pembayaran Ditolak</span>
                                 @endif
                             </td>
+                            @if ($downPayment->status == 'rejected')
+                                <td><span class="badge badge-danger">{{ $downPayment->notes }}</span></td>
+                            @endif
                             <td>{{ $downPayment->created_at->format('d M Y H:i') }}</td>
                         </tr>
                     </table>
@@ -131,6 +134,9 @@
                                 <span class="badge badge-danger">Pembayaran Ditolak</span>
                             @endif
                         </td>
+                        @if ($remainingPayment->status == 'rejected')
+                            <td><span class="badge badge-danger">{{ $remainingPayment->notes }}</span></td>
+                        @endif
                         <td>{{ $remainingPayment->created_at->format('d M Y H:i') }}</td>
                     </tr>
                     

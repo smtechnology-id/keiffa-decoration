@@ -44,12 +44,12 @@
                                     </td>
                                     <td>
                                        @if ($review->status == 'pending')
-                                            <a href="{{ route('admin.review.approve', $review->id) }}" class="btn btn-success" style="background-color: #7E4752; border: none;">Approve</a>
-                                            <a href="{{ route('admin.review.reject', $review->id) }}" class="btn btn-danger" style="background-color: #7E4752; border: none;">Reject</a>
+                                            <a href="{{ route('admin.review.approve', $review->id) }}" class="btn btn-success mt-2" style="background-color: #7E4752; border: none;">Approve</a>
+                                            <a href="{{ route('admin.review.reject', $review->id) }}" class="btn btn-danger mt-2" style="background-color: #7E4752; border: none;">Reject</a>
                                         @elseif ($review->status == 'approved')
-                                        <a href="{{ route('admin.review.reject', $review->id) }}" class="btn btn-danger" style="background-color: #7E4752; border: none;">Reject</a>
+                                        <a href="{{ route('admin.review.reject', $review->id) }}" class="btn btn-danger mt-2" style="background-color: #7E4752; border: none;">Reject</a>
                                         @elseif ($review->status == 'rejected')
-                                        <a href="{{ route('admin.review.approve', $review->id) }}" class="btn btn-success" style="background-color: #7E4752; border: none;">Approve</a>
+                                        <a href="{{ route('admin.review.approve', $review->id) }}" class="btn btn-success mt-2" style="background-color: #7E4752; border: none;">Approve</a>
                                         @endif
                                     </td>
                                 </tr>

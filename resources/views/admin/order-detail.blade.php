@@ -230,7 +230,11 @@
                                                                 <input type="hidden" name="id"
                                                                     value="{{ $downPayment->id }}">
                                                                 <input type="hidden" name="status" value="rejected">
-                                                                <p>Apakah anda yakin ingin menolak pembayaran ini?</p>
+                                                                <p>Konfirmasi penolakan pembayaran</p>
+                                                                <div class="form-group">
+                                                                    <label for="notes">Alasan Penolakan</label>
+                                                                    <input type="text" name="notes" id="notes" class="form-control" placeholder="Alasan Penolakan" required>
+                                                                </div>
 
                                                             </div>
                                                             <div class="modal-footer">
@@ -331,8 +335,11 @@
                                                                 <input type="hidden" name="id"
                                                                     value="{{ $fullPayment->id }}">
                                                                 <input type="hidden" name="status" value="rejected">
-                                                                <p>Apakah anda yakin ingin menolak pembayaran ini?</p>
-
+                                                                <p>Konfirmasi penolakan pembayaran</p>
+                                                                <div class="form-group">
+                                                                    <label for="notes">Alasan Penolakan</label>
+                                                                    <input type="text" name="notes" id="notes" class="form-control" placeholder="Alasan Penolakan" required>
+                                                                </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"

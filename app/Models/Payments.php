@@ -17,6 +17,7 @@ class Payments extends Model
         'payment_proof',
         'nominal',
         'status',
+        'notes',
     ];
 
     public function user()

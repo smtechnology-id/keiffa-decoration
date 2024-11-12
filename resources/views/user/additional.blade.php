@@ -7,31 +7,31 @@
     <a href="{{ route('user.catalog') }}" class="btn btn-outline-primary mb-3 mr-3" style="background-color: transparent; border-color: #7E4752; color: #7E4752;">Paket Dekorasi Wedding</a>   
     <a href="{{ route('user.additional') }}" class="btn btn-outline-primary mb-3 ml-3" style="background-color: transparent; border-color: #7E4752; color: #7E4752;">Additional Dekorasi Wedding</a>  
    </div>
-    <div class="row" data-aos="fade-up">
-        @foreach ($additional as $additional)
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-            <div class="gallery_content">
-                <figure class="contact-form-img">
-                    <img src="{{ asset('storage/additional/' . $additional->image) }}" alt="" class="img-fluid" style="border-radius: 50px 0px 50px 0px; height: 350px; object-fit: cover;" width="100%">
-                </figure>
-                <div class="banner-btn discover-btn-banner text-center">
-                    <a href="" class="text-decoration-none text-center mt-3" style="color: #7E4752;">Rp. {{ number_format($additional->harga, 0, ',', '.') }}</a>
-                </div>
-                <h5 class="text-center">{{ $additional->nama }}</h5>
-                <ul class="list-unstyled">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <li class="text-center">{{ $additional->deskripsi }}</li>
-                        </div>
+   <div class="row" data-aos="fade-up">
+    @foreach ($additional as $additional)
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 d-flex">
+        <div class="gallery_content d-flex flex-column" style="border: none; height: 100%;">
+            <figure class="contact-form-img">
+                <img src="{{ asset('storage/additional/' . $additional->image) }}" alt="" class="img-fluid" style="border-radius: 50px 0px 50px 0px; height: 350px; object-fit: cover;" width="100%">
+            </figure>
+            <div class="banner-btn discover-btn-banner text-center">
+                <a href="" class="text-decoration-none text-center mt-3" style="color: #7E4752;">Rp. {{ number_format($additional->harga, 0, ',', '.') }}</a>
+            </div>
+            <h5 class="text-center">{{ $additional->nama }}</h5>
+            <ul class="list-unstyled flex-grow-1">
+                <div class="row">
+                    <div class="col-md-12">
+                        <li class="text-center">{{ $additional->deskripsi }}</li>
                     </div>
-                </ul>
-                <div class="banner-btn discover-btn-banner text-center">
-                    <a href="{{ route('user.cart.add', ['slug' => $additional->slug]) }}" class="btn btn-primary text-decoration-none" style="background-color: #7E4752; color: #fff;"><i class="fa fa-clipboard-list"></i> Tambahkan Ke Keranjang</a>
                 </div>
+            </ul>
+            <div class="banner-btn discover-btn-banner text-center mt-auto">
+                <a href="{{ route('user.cart.add', ['slug' => $additional->slug]) }}" class="btn btn-primary text-decoration-none" style="background-color: #7E4752; color: #fff;"><i class="fa fa-clipboard-list"></i> Tambahkan Ke Keranjang</a>
             </div>
         </div>
-        @endforeach
-
     </div>
+    @endforeach
+</div>
+
 </div>
 @endsection
